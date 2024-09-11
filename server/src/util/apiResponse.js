@@ -5,9 +5,6 @@ class apiResponse{
         this.message = message
         this.success = statusCode < 400
     }
-
-    static send(res, statusCode, data = null, message = "Success"){
-        const response = new apiResponse(statusCode, data, message);
-        return res.status(statusCode).json(response);
-    }
 }
+
+export {apiResponse}
