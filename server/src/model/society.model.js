@@ -3,7 +3,8 @@ import mongoose from "mongoose";
 const societySchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     members: [{
         type: mongoose.Schema.Types.ObjectId,

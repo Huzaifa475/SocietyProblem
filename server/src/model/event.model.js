@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const eventSchema = new mongoose.Schema({
     title: {
         type: String, 
-        required: true
+        required: true,
     },
     description: {
         type: String, 
@@ -14,12 +14,12 @@ const eventSchema = new mongoose.Schema({
         required: true
     },
     societyName: {
-        type: String,
-        required: true
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Society"
     },
-    date: {
-        type: Date,
-        required: true
+    createdBy: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
     }
 }, {timestamps: true})
 

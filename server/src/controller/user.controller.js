@@ -2,6 +2,8 @@ import {apiResponse} from "../util/apiResponse.js"
 import {apiError} from "../util/apiError.js"
 import {asyncHandler} from "../util/asyncHandler.js"
 import {User} from "../model/user.model.js"
+import { Society } from "../model/society.model.js"
+import {uploadOnCloudinary} from "../util/uploadOnCloudinary.js"
 
 const generateAccessRefreshToken = async (userId) => {
     try{
@@ -75,7 +77,7 @@ const loginUser = asyncHandler(async(req, res) => {
 
     const {refreshToken, accessToken} = await generateAccessRefreshToken(existedUser?._id);
 
-    const loggedInUser = await User.findById(existedUser?._id).select("-refreshToken")
+    const loggedInUser = await User.findById(existedUser?._id).select("-password -refreshToken")
 
     const options = {
         httpOnly: true,
@@ -120,8 +122,28 @@ const informationUser = asyncHandler(async(req, res) => {
 
     const {phone, societyName, admin, address} = req.body
 
-    if(!phone || !societyName || !admin || !address){
+    if(phone === null || !societyName || admin === null || !address){
         throw new apiError(400, "All fields are required")
+    }
+
+    let society = await Society.findOne({$or: [{name: societyName}]});
+
+    if(admin && !society){
+        society = await Society.create({
+            name: societyName,
+            admin: req.user?._id,
+            members: [req.user?._id]
+        })
+    }
+
+    if(society){
+        if(!society.members.includes(req.user?._id)){
+            society.members.push(req.user?._id);
+            await society.save({validateBeforeSave: false});
+        }
+    }
+    else{
+        throw new apiError(400, "Society does not exists or member already exists")
     }
 
     const user = await User.findByIdAndUpdate(
@@ -135,7 +157,7 @@ const informationUser = asyncHandler(async(req, res) => {
         {
             new: true
         }
-    )
+    ).select("-password -refreshToken")
 
     if(!user){
         throw new apiError(402, "Invalid request")
@@ -143,20 +165,42 @@ const informationUser = asyncHandler(async(req, res) => {
 
     return res
     .status(200)
-    .json(new apiResponse(200, user, "User information updated successfully"))
+    .json(new apiResponse(200, {user, society}, "User information updated successfully"))
 })
 
 const updateUser = asyncHandler(async(req, res) => {
 
-    const {name, email, phone, societyName, admin, address} = req.body;
+    const {name, email, phone, societyName, address} = req.body;
 
     const updateFields = {} 
 
     if(name) updateFields.name = name
     if(email) updateFields.email = email
     if(phone) updateFields.phone = phone
-    if(societyName) updateFields.societyName = societyName
-    if(admin !== undefined) updateFields.admin = admin
+
+    if(societyName) {
+        
+        await Society.findOneAndUpdate(
+            {$or: [{name: req.user?.societyName}]},
+            {
+                $pull: {members: req.user?._id}
+            }
+        )
+
+        const society = await Society.findOneAndUpdate(
+            {$or: [{name: societyName}]},
+            {
+                $addToSet: {members: req.user?._id}
+            }
+        )
+
+        if(!society){
+            throw new apiError(404, "Society does not exists")
+        }
+        
+        updateFields.societyName = societyName
+    }
+
     if(address) updateFields.address = address
 
     await User.findByIdAndUpdate(
@@ -196,4 +240,33 @@ const getCurrentUser = asyncHandler(async(req, res) => {
     .json(new apiResponse(200, user, "Current user fetch successfully"))
 })
 
-export {registerUser, loginUser, logoutUser, informationUser, updateUser, getCurrentUser}
+const uploadPhotoUser = asyncHandler(async(req, res) => {
+
+    const photoPath = req.file?.path 
+
+    if(!photoPath){
+        throw new apiError(400, "Photo is not provided")
+    }
+
+    const photo = await uploadOnCloudinary(photoPath)
+
+    if(!photo){
+        throw new apiError(500, "Something went wrong will uploading the photo")
+    }
+
+    const user = await User.findByIdAndUpdate(
+        req.user?._id,
+        {
+            photo: photo.url
+        },
+        {
+            new: true
+        }
+    ).select("-password -refreshToken")
+
+    return res
+    .status(200)
+    .json(new apiResponse(200, user, "Photo uploaded successfully"))
+})
+
+export {registerUser, loginUser, logoutUser, informationUser, updateUser, getCurrentUser, uploadPhotoUser}
