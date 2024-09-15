@@ -70,8 +70,10 @@ const deleteEvent = asyncHandler(async(req, res) => {
         throw new apiError(404, "Event does not exists")
     }
 
+    let event = await Event.findById(eventId)
+
     if(req.user?.admin === true || event.createdBy.equals(req.user?._id)){
-        await Event.findByIdAndDelete(eventId)
+        event = await Event.findByIdAndDelete(eventId)
     }
     else{
         throw new apiError(404, "Invalid request")
@@ -79,7 +81,7 @@ const deleteEvent = asyncHandler(async(req, res) => {
 
     return res
     .status(200)
-    .json(new apiResponse(200, "Event deleted successfully"))
+    .json(new apiResponse(200, event,"Event deleted successfully"))
 })
 
 export {createEvent, updateEvent, deleteEvent}

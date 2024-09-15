@@ -14,8 +14,8 @@ const eventSchema = new mongoose.Schema({
         required: true
     },
     societyName: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Society"
+        type: String,
+        required: true
     },
     createdBy: {
         type: mongoose.Schema.Types.ObjectId,

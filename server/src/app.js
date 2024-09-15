@@ -18,7 +18,13 @@ app.use(express.static("public"))
 app.use(cookieParser())
 
 import userRouter from "./route/user.route.js"
+import eventRouter from "./route/event.route.js"
+import problemRouter from "./route/problem.router.js"
+import societyRouter from "./route/society.router.js"
 
 app.use("/api/v1/users", userRouter);
+app.use("/api/v1/event", eventRouter);
+app.use("/api/v1/problem", problemRouter);
+app.use("/api/v1/society", societyRouter);
 
 export {app}

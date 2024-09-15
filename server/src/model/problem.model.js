@@ -7,12 +7,27 @@ const problemSchema = new mongoose.Schema({
     },
     upvote: {
         type: Number,
+        default: 0
     },
     status: {
-        type: Boolean,
-        required: true
+        type: String,
+        required: true,
+        enum: ['ongoing', 'completed', 'incomplete'],
+        default: 'incomplete'
     },
     category: {
+        type: String,
+        required: true,
+        enum: ['Infrastructure Issues', 'Security Concerns', 'Utilities Problems', 'Event Management',
+            'Financial Issues', 'Administrative Requests', 'Dispute Resolution', 'Housekeeping Issues',
+            'Parking Issues', 'Community Activities'
+        ]
+    },
+    createdBy: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    },
+    societyName: {
         type: String,
         required: true
     }
