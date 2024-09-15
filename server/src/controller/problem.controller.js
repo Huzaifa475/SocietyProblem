@@ -3,6 +3,7 @@ import { Problem } from "../model/problem.model.js";
 import { apiError } from "../util/apiError.js";
 import { apiResponse } from "../util/apiResponse.js";
 import { asyncHandler } from "../util/asyncHandler.js";
+import {Notification} from "../model/notification.model.js";
 
 const createProblem = asyncHandler(async(req, res) => {
 
@@ -29,6 +30,20 @@ const createProblem = asyncHandler(async(req, res) => {
 
     if(!problem){
         throw new apiError(500, "Server error, Someting went wrong")
+    }
+
+    const notificationContent = `New Problem arised in society, ${problem.content}`
+    const notification = await Promise.all(
+        req.society?.members.map(member => 
+            Notification.create({
+                content: notificationContent,
+                sendTo: member._id
+            })
+        )
+    );
+
+    if(!notification.length){
+        throw new apiError(500, "Server error, Notification could not be created");
     }
 
     return res
@@ -78,10 +93,10 @@ const deleteProblem = asyncHandler(async(req, res) => {
         throw new apiError(402, "Problem does not exists")
     }
 
-    let problem = await Problem.findById(problemId)
+    const problem = await Problem.findById(problemId)
 
     if(problem.createdBy.equals(req.user._id) || req.user.admin === true){
-        let problem = await Problem.findByIdAndDelete(problemId)
+        await Problem.findByIdAndDelete(problemId)
     }
     else{
         throw new apiError(500, "Server error, Something went wrong")
@@ -89,7 +104,7 @@ const deleteProblem = asyncHandler(async(req, res) => {
 
     return res
     .status(200)
-    .json(new apiResponse(200, problem,"Problem deleted successfully"))
+    .json(new apiResponse(200, problem, "Problem deleted successfully"))
 })
 
 export {createProblem, updateProblem, deleteProblem}

@@ -20,6 +20,10 @@ const eventSchema = new mongoose.Schema({
     createdBy: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
+    },
+    onDate: {
+        type: Date,
+        required: true
     }
 }, {timestamps: true})
 

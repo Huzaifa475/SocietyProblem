@@ -6,8 +6,8 @@ const router = Router()
 
 router.route("/create").post(verifyJwt, createEvent);
 
-router.route("/update/:eventId").post(verifyJwt, updateEvent);
+router.route("/update/:eventId").patch(verifyJwt, updateEvent);
 
-router.route("/delete/:eventId").post(verifyJwt, deleteEvent);
+router.route("/delete/:eventId").delete(verifyJwt, deleteEvent);
 
 export default router

@@ -6,9 +6,9 @@ import { isValidObjectId } from "mongoose"
 
 const createEvent = asyncHandler(async(req, res) => {
 
-    const {title, description, location} = req.body
+    const {title, description, location, onDate} = req.body
 
-    if(!title || !description || !location){
+    if(!title || !description || !location || !onDate){
         throw new apiError(400, "All fields are required");
     }
 
@@ -17,7 +17,8 @@ const createEvent = asyncHandler(async(req, res) => {
         description,
         location,
         societyName: req.user?.societyName,
-        createdBy: req.user?._id
+        createdBy: req.user?._id,
+        onDate
     })
 
     if(!event){
@@ -31,7 +32,7 @@ const createEvent = asyncHandler(async(req, res) => {
 
 const updateEvent = asyncHandler(async(req, res) => {
 
-    const {title, description, location} = req.body;
+    const {title, description, location, onDate} = req.body;
     const {eventId} = req.params;
 
     if(!isValidObjectId(eventId)){
@@ -40,13 +41,14 @@ const updateEvent = asyncHandler(async(req, res) => {
 
     let event = await Event.findById(eventId);
 
-    if(event.createdBy.equals(req.user?._id) || req.user?._id === true){
+    if(event.createdBy.equals(req.user?._id) || req.user?.admin){
         event = await Event.findByIdAndUpdate(
             eventId, 
             {
                 title,
                 description,
-                location
+                location,
+                onDate
             },
             {
                 new: true
@@ -70,10 +72,10 @@ const deleteEvent = asyncHandler(async(req, res) => {
         throw new apiError(404, "Event does not exists")
     }
 
-    let event = await Event.findById(eventId)
+    const event = await Event.findById(eventId)
 
-    if(req.user?.admin === true || event.createdBy.equals(req.user?._id)){
-        event = await Event.findByIdAndDelete(eventId)
+    if(req.user?.admin || event.createdBy.equals(req.user?._id)){
+        await Event.findByIdAndDelete(eventId)
     }
     else{
         throw new apiError(404, "Invalid request")
