@@ -8,6 +8,15 @@ const messageSchema = new mongoose.Schema({
     createdBy: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
+    },
+    societyId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Society"
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now,
+        index: {expires: '7d'}
     }
 }, {timestamps: true})
 

@@ -4,6 +4,7 @@ import {asyncHandler} from "../util/asyncHandler.js"
 import {User} from "../model/user.model.js"
 import { Society } from "../model/society.model.js"
 import {uploadOnCloudinary} from "../util/uploadOnCloudinary.js"
+import { isValidObjectId } from "mongoose"
 
 const generateAccessRefreshToken = async (userId) => {
     try{
@@ -127,6 +128,10 @@ const informationUser = asyncHandler(async(req, res) => {
     }
 
     let society = await Society.findOne({$or: [{name: societyName}]});
+
+    if(society?.admin && admin){
+        throw new apiError(402, "Society already have admin")
+    }
 
     if(admin && !society){
         society = await Society.create({
@@ -272,4 +277,51 @@ const uploadPhotoUser = asyncHandler(async(req, res) => {
     .json(new apiResponse(200, user, "Photo uploaded successfully"))
 })
 
-export {registerUser, loginUser, logoutUser, informationUser, updateUser, getCurrentUser, uploadPhotoUser}
+const changeAdmin = asyncHandler(async(req, res) => {
+
+    const {userId} = req.body;
+
+    if(!isValidObjectId(userId)){
+        throw new apiError(402, "Invalid user id")
+    }
+
+    if(!req.user?.admin){
+        throw new apiError(404, "Invalid access")
+    }
+
+    const currentAdmin = await User.findByIdAndUpdate(
+        req.user?._id,
+        {admin: false},
+        {new: true}
+    )
+
+    if(!currentAdmin){
+        throw new apiError(402, "Current admin does not exists")
+    }
+
+    const newAdmin = await User.findByIdAndUpdate(
+        userId,
+        {admin: true},
+        {new: true}
+    )
+
+    if(!newAdmin){
+        throw new apiError(402, "New admin does not exists")
+    }
+
+    const society = await Society.findOneAndUpdate(
+        {name: req.user?.societyName},
+        {admin: userId},
+        {new : true}
+    )
+
+    if(!society){
+        throw new apiError(402, "Society does not exists")
+    }
+
+    return res
+    .status(200)
+    .json(new apiResponse(200, {currentAdmin, newAdmin, society},"Admin changed successfully"));
+})
+
+export {registerUser, loginUser, logoutUser, informationUser, updateUser, getCurrentUser, uploadPhotoUser, changeAdmin}
