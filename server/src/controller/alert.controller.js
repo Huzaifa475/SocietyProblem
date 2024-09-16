@@ -13,7 +13,7 @@ const createAlert = asyncHandler(async (req, res) => {
     }
 
     const alerts = await Promise.all(
-        req.society?.members.filter(member => !member._id.equals(adminId)).map(member =>
+        req.society?.members.map(member =>
             Alert.create({
                 content,
                 sendTo: member._id
@@ -43,7 +43,7 @@ const deleteAlertByUser = asyncHandler(async(req, res) => {
 
     return res
     .status(200)
-    .json(new apiResponse(200, "Alert deleted successfully"))
+    .json(new apiResponse(200, "Alerts deleted successfully"))
 })
 
 const deleteAlertByAdmin = asyncHandler(async(req, res) => {

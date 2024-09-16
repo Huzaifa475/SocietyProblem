@@ -12,3 +12,5 @@ router.route("/get").get(verifyJwt, getAlert)
 router.route("/deleteByUser").delete(verifyJwt, deleteAlertByUser)
 
 router.route("/deleteByAdmin/:alertId").delete(verifyJwt, deleteAlertByAdmin)
+
+export default router

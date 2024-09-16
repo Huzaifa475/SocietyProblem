@@ -34,7 +34,7 @@ const createProblem = asyncHandler(async(req, res) => {
 
     const notificationContent = `New Problem arised in society, ${problem.content}`
     const notification = await Promise.all(
-        req.society?.members.map(member => 
+        req.society?.members.filter(member => !member._id.equals(req.user?._id)).map(member => 
             Notification.create({
                 content: notificationContent,
                 sendTo: member._id
@@ -99,7 +99,7 @@ const deleteProblem = asyncHandler(async(req, res) => {
         await Problem.findByIdAndDelete(problemId)
     }
     else{
-        throw new apiError(500, "Server error, Something went wrong")
+        throw new apiError(402, "Invalid request")
     }
 
     return res

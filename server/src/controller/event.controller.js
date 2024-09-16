@@ -8,7 +8,7 @@ const createEvent = asyncHandler(async(req, res) => {
 
     const {title, description, location, onDate} = req.body
 
-    if(!title || !description || !location || !onDate){
+    if(!title || !description || !location || onDate === undefined){
         throw new apiError(400, "All fields are required");
     }
 

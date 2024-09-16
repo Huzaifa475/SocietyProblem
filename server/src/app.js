@@ -22,11 +22,13 @@ import eventRouter from "./route/event.route.js"
 import problemRouter from "./route/problem.router.js"
 import societyRouter from "./route/society.router.js"
 import notificationRouter from "./route/notification.route.js"
+import alertRouter from "./route/alert.route.js"
 
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/event", eventRouter);
 app.use("/api/v1/problem", problemRouter);
 app.use("/api/v1/society", societyRouter);
 app.use("/api/v1/notification", notificationRouter);
+app.use("/api/v1/alert", alertRouter);
 
 export {app}

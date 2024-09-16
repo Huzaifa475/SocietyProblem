@@ -122,7 +122,7 @@ const informationUser = asyncHandler(async(req, res) => {
 
     const {phone, societyName, admin, address} = req.body
 
-    if(phone === null || !societyName || admin === null || !address){
+    if(phone === undefined || !societyName || admin === undefined || !address){
         throw new apiError(400, "All fields are required")
     }
 
@@ -178,7 +178,7 @@ const updateUser = asyncHandler(async(req, res) => {
     if(email) updateFields.email = email
     if(phone) updateFields.phone = phone
 
-    if(societyName) {
+    if(societyName && !req.user?.admin) {
         
         await Society.findOneAndUpdate(
             {$or: [{name: req.user?.societyName}]},
@@ -199,6 +199,9 @@ const updateUser = asyncHandler(async(req, res) => {
         }
         
         updateFields.societyName = societyName
+    }
+    else{
+        throw new apiError(404, "Admin cannot change its society")
     }
 
     if(address) updateFields.address = address
