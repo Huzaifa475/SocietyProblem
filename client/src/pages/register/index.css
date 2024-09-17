@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root{
+    --primary-color: #2d4052;
+    --secondary-color: #5b80a4;
+    --netural-background: #999999;
+    font-family: "Poppins", "Raleway", sans-serif;
+    background: rgb(7,109,160);
+    background: linear-gradient(94deg, rgba(7,109,160,1) 48%, rgba(6,161,240,1) 75%, rgba(48,186,255,1) 87%);
+}
+
+.container{
+    width: 99vw;
+    height: 97vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-container{
+    width: 70%;
+    height: 80%;
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    border-radius: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: translate3d(100, 100, -100);
+}
+
+.img-container{
+    width: 40%;
+    height: 100%;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    background-image: url('../../assets/sign-upImg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.register{
+    width: 60%;
+    height: 100%;
+    padding: 2rem;
+    padding-left: 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.title span{
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--primary-color);
+}
+
+.default-property{
+    display: flex;
+    flex-direction: column;
+    gap: 0.01rem;
+}
+
+.default-property span{
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--secondary-color);
+}
+
+.default-property input{
+    width: 60%;
+    height: 1.5rem;
+    padding-left: 1rem;
+    border-radius: 0.4rem;
+    border: 1px solid black;
+}
+
+.default-property input:focus{
+    outline: none;
+}
+
+.sign-up{
+    display: flex;
+    justify-content: space-between;
+}
+
+.sign-up button{
+    width: 100%;
+    height: 140%;
+    border-radius: 0.3rem;
+    background-color: black;
+    color: white;
+    border: none;
+}
