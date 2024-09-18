@@ -1,11 +1,12 @@
 import express, { urlencoded } from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import { apiError } from "./util/apiError.js";
 
 const app = express()
 
 app.use(cors({
-    origin: process.env.CORS_ORIGIN,
+    origin: process.env.CORS_ORIGIN || "*",
     credentials: true
 }))
 
@@ -30,5 +31,19 @@ app.use("/api/v1/problem", problemRouter);
 app.use("/api/v1/society", societyRouter);
 app.use("/api/v1/notification", notificationRouter);
 app.use("/api/v1/alert", alertRouter);
+
+app.use((req, res, next) => {
+    const error = new apiError(404, 'Resource not found');
+    next(error);
+});
+
+app.use((err, req, res, next) => {
+    const statusCode = err.status || 500;
+    res.status(statusCode).json({
+      success: false,
+      message: err.message || 'Internal Server Error',
+      statusCode: statusCode
+    });
+});
 
 export {app}
