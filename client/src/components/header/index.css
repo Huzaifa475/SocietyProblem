@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root{
+    --primary-color: #2d4052;
+    --secondary-color: #5b80a4;
+    --netural-background: #999999;
+    font-family: "Poppins", "Raleway", sans-serif;
+}
+
+html body{
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+.header{
+    width: 100%;
+    height: 10vh;
+    padding-block: 1%;
+    padding-left: 4%;
+    padding-right: 5%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: rgb(240, 245, 240);
+}
+
+.header-society-name{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-society-name span{
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--primary-color);
+}
+
+.header-icon{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20%;
+}
+
+.header-icon button{
+    width: 3vw;
+    height: 3vw;
+    border-radius: 1.5vw;
+    outline: line;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgb(191, 191, 191);
+    background-color: white;
+}
+
+.header-icon button:hover{
+    border: 1px solid rgb(144, 144, 144);
+}
+
+@media screen and (max-width: 994px) {
+    .header-icon button{
+        width: 3.5vw;
+        height: 3.5vw;
+        border-radius: 1.7vw;
+    }
+}
+
+@media screen and (max-width: 867px) {
+    .header-society-name span{
+        font-size: 1.5rem;
+    }
+    .header-icon button{
+        width: 5vw;
+        height: 5vw;
+        border-radius: 2.5vw;
+    }
+}
+
+@media screen and (max-width: 520px) {
+    .header-society-name span{
+        font-size: 1.2rem;
+    }
+    .header-icon button{
+        width: 6vw;
+        height: 6vw;
+        border-radius: 3vw;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .header-society-name span{
+        font-size: 1rem;
+    }
+    .header-icon button{
+        width: 10vw;
+        height: 10vw;
+        border-radius: 5vw;
+    }
+}

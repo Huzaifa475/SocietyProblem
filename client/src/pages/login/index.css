@@ -21,21 +21,12 @@ html body{
     display: flex;
     justify-content: center;
     align-items: center;
-    /* background: rgb(217,162,255); */
-    /* background: radial-gradient(circle, rgba(217,162,255,1) 11%, rgba(253,171,171,1) 46%, rgba(255,231,197,1) 100%); */
-    /* background: linear-gradient(
-        180deg, 
-        white 0%,          
-        #d3d3d3 50%,      
-        #28a745 100%    
-    ); */
     background: linear-gradient(
-        180deg,              /* Vertical gradient (upside-down) */
-        #ffffff 0%,          /* White (cloudy start) at the top */
-        #d3d3d3 40%,         /* Cloudy grey in the middle */
-        #b0c4de 100%         /* Glassy blue towards the bottom */
+        180deg,  
+        #ffffff 0%,         
+        #d3d3d3 40%, 
+        #b0c4de 100%     
     );
-    transition: background 1s ease; 
 }
 
 .login-main-container{

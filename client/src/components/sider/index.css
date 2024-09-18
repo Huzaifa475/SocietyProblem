@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root{
+    --primary-color: #2d4052;
+    --secondary-color: #5b80a4;
+    --netural-background: #999999;
+    font-family: "Poppins", "Raleway", sans-serif;
+}
+
+html body{
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+.sider-container{
+    width: 20vw;
+    height: 90vh;
+    border-right: 1px solid black;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 5%;
+}
+
+.profile-img-container{
+    width: 20vw;
+    height: 22vh;
+    margin-block: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-img-container img{
+    width: 50%;
+    height: 95%;
+    border: 1px solid black;
+    border-radius: 50%;
+}
+
+.view-profile-container{
+    height: 10vh;
+    padding-left: 5%;
+    display: flex;
+    align-items: center;
+}
+
+.view-profile-container button{
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    font-size: large;
+    color: var(--primary-color);
+    border: none;
+    outline: none;
+    background-color: white;
+}
+
+.view-profile-container button:hover{
+    border-left: 1px solid var(--netural-background);
+    color: var(--secondary-color);
+}
+
+.admin-information-container{
+    height: 10vh;
+    padding-left: 5%;
+    display: flex;
+    align-items: center;
+}
+
+.admin-information-container button{
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    font-size: large;
+    color: var(--primary-color);
+    border: none;
+    outline: none;
+    background-color: white;
+}
+
+.admin-information-container button:hover{
+    border-left: 1px solid var(--netural-background);
+    color: var(--secondary-color);
+}
+
+.logout-button-container{
+    margin-top: auto;
+    padding: 1rem;
+    width: 10vw;
+    height: 12vh;
+    align-self: flex-end;
+}
+
+.logout-button-container button{
+    width: 100%;
+    height: 100%;
+    border-radius: 2rem;
+    background-color: white;
+    border: 1px solid black;
+}

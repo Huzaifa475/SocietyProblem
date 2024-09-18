@@ -30,7 +30,7 @@ function Register() {
             })
             toast.success(res?.data?.message)
             setTimeout(() => {
-                navigate('/login')
+                navigate('/', {replace: true})
             }, 500)
         } catch (error) {
             if (error.response) {

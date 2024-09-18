@@ -1,7 +1,7 @@
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, replace, useNavigate } from 'react-router-dom';
 import { toast, Toaster } from 'react-hot-toast'
 import axios from 'axios'
 import './index.css'
@@ -15,9 +15,8 @@ function Login() {
 
   axios.defaults.withCredentials = true;
   const handleLogin = async () => {
-    let res;
     try {
-      res = await axios({
+      const res = await axios({
         method: 'post',
         url: '/api/v1/users/login',
         data: {
@@ -26,8 +25,10 @@ function Login() {
         }
       })
       toast.success(res?.data?.message);
+      const token = res.data?.data?.accessToken;
+      localStorage.setItem('accessToken', token);
       setTimeout(() => {
-        navigate("/home")
+        navigate("/home", {replace: true})
       }, 500)
     } catch (error) {
       if (error.response) {
