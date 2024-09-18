@@ -33,15 +33,14 @@ function Register() {
                 navigate('/login')
             }, 500)
         } catch (error) {
-            if(error.response){
-                console.log(error.response?.data?.message);
-                toast.error(error.response?.data?.message);
+            if (error.response) {
+                if (error.response?.data?.message)
+                    toast.error(error.response?.data?.message);
+                else
+                    toast.error(error.request?.statusText);
             }
-            else if(error.request){
-                console.log("no response");
-            }
-            else{
-                console.log(error.message);
+            else if (error.request) {
+                toast.error(error.request?.statusText);
             }
         }
 
@@ -54,41 +53,38 @@ function Register() {
         setShowPassword(prev => !prev);
     }
     return (
-        <div className='container'>
-            <div className='main-container'>
-                <div className='img-container'>
+        <div className='signup-container'>
+            <div className='signup-main-container'>
+                <div className='signup-img-container'>
                 </div>
                 <div className='register'>
-                    <div className='title'>
+                    <div className='signup-title'>
                         <span>SignUp</span>
                     </div>
                     <div className='default-property default'>
                         <span>Name</span>
-                        <input type="text" placeholder='Jen Doe' value={name} onChange={(e) => setName(e.target.value)} autoComplete='off'/>
+                        <input type="text" placeholder='Jen Doe' value={name} onChange={(e) => setName(e.target.value)} autoComplete='off' />
                     </div>
                     <div className='default-property default'>
                         <span>Email</span>
-                        <input type="text" placeholder='abc@gmail.com' value={email} onChange={(e) => setEmail(e.target.value)} autoComplete='off'/>
+                        <input type="text" placeholder='abc@gmail.com' value={email} onChange={(e) => setEmail(e.target.value)} autoComplete='off' />
                     </div>
                     <div className='default-property'>
                         <span>Password</span>
                         <div className='password'>
-                            <input type={showPassword ? "text" : "password"} placeholder='xyz123' value={password} onChange={(e) => setPassword(e.target.value)} autoComplete='off'/>
-                            <button onClick={handleClick}><FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} className="white-icon"/></button>
+                            <input type={showPassword ? "text" : "password"} placeholder='xyz123' value={password} onChange={(e) => setPassword(e.target.value)} autoComplete='off' />
+                            <button onClick={handleClick}><FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} className="white-icon" /></button>
                         </div>
                     </div>
                     <div className='sign-up'>
                         <div className='signup-button'>
                             <button onClick={handleRegister}>SignUp</button>
-                            <Toaster/>
-                        </div>
-                        <div className='forgot-password'>
-                            <Link to="/forgot-password" relative="path">Forgot Password?</Link>
+                            <Toaster />
                         </div>
                     </div>
                     <div className='login-button'>
                         <span>Already have an account?</span>
-                        <Link to="/login" relative="path">LogIn</Link>
+                        <Link to="/" relative="path" className='link'>LogIn</Link>
                     </div>
                 </div>
             </div>

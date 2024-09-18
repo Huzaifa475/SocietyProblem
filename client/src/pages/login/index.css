@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root{
+    --primary-color: #2d4052;
+    --secondary-color: #5b80a4;
+    --netural-background: #999999;
+    font-family: "Poppins", "Raleway", sans-serif; 
+}
+
+html body{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.login-container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background: rgb(217,162,255); */
+    /* background: radial-gradient(circle, rgba(217,162,255,1) 11%, rgba(253,171,171,1) 46%, rgba(255,231,197,1) 100%); */
+    /* background: linear-gradient(
+        180deg, 
+        white 0%,          
+        #d3d3d3 50%,      
+        #28a745 100%    
+    ); */
+    background: linear-gradient(
+        180deg,              /* Vertical gradient (upside-down) */
+        #ffffff 0%,          /* White (cloudy start) at the top */
+        #d3d3d3 40%,         /* Cloudy grey in the middle */
+        #b0c4de 100%         /* Glassy blue towards the bottom */
+    );
+    transition: background 1s ease; 
+}
+
+.login-main-container{
+    width: 30%;
+    height: 60%;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 1.2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    background: rgb(206, 231, 255);
+    background: linear-gradient(223deg, rgba(206, 231, 255, 1) 0%, rgba(255, 255, 255, 1) 100%);    
+}
+
+.login-title span{
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--primary-color);
+}
+
+.login-name-field{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.login-name-field span{
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--secondary-color);
+}
+
+.login-name-field input{
+    width: 80%;
+    height: 2rem;
+    padding-left: 0.3rem;
+    border-radius: 0.4rem;
+    border: 1px solid black;
+}
+
+.login-name-field input:focus{
+    outline: none;
+}
+
+.login-password-field{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.login-password-field span{
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--secondary-color);
+}
+
+.login-password-field input{
+    width: 70%;
+    height: 2rem;
+    padding-left: 0.3rem;
+    border-top-left-radius: 0.4rem;
+    border-bottom-left-radius: 0.4rem;
+    border: 1px solid black;
+}
+
+.login-password-field input:focus{
+    outline: none;
+}
+
+.login-password-field button{
+    width: 10%;
+    height: 2rem;
+    border-top-right-radius: 0.4rem;
+    border-bottom-right-radius: 0.4rem;
+    border: 1px solid black;
+}
+
+.login-button button{
+    width: 6rem;
+    height: 2rem;
+    color: white;
+    background-color: black;
+    outline: none;
+    border: none;
+    border-radius: 1rem;
+}
+
+@media screen and (max-height: 580px) {
+    .login-main-container{
+        width: 40%;
+        height: 70%;
+    }
+}
+
+@media screen and (max-width: 880px) {
+    .login-main-container{
+        width: 45%;
+    }
+}
+
+@media screen and (max-height: 474px) {
+    .login-main-container{
+        width: 50%;
+        height: 80%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .login-main-container{
+        width: 60%
+    }
+}
+
+@media screen and (max-width: 433px) {
+    .login-main-container{
+        width: 70%;
+    }
+    .login-title span{
+        font-size: 1.2rem;
+    }
+    .login-name-field span{
+        font-size: 0.9rem;
+    }
+    .login-password-field span{
+        font-size: 0.9rem;
+    }
+    .login-password-field input{
+        width: 65%;
+    }
+    .login-password-field button{
+        width: 15%;
+    }
+}

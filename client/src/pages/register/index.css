@@ -7,31 +7,41 @@
     --secondary-color: #5b80a4;
     --netural-background: #999999;
     font-family: "Poppins", "Raleway", sans-serif;
-    background: rgb(7,109,160);
-    background: linear-gradient(94deg, rgba(7,109,160,1) 48%, rgba(6,161,240,1) 75%, rgba(48,186,255,1) 87%);
 }
 
-.container{
+*{
+    margin: none;
+    padding: none;
+    box-sizing: border-box;
+}
+
+html body{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.signup-container{
     width: 99vw;
     height: 97vh;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    background: none;
 }
 
-.main-container{
+.signup-main-container{
     width: 70%;
     height: 80%;
     display: flex;
     flex-direction: row;
     background-color: white;
     border-radius: 1rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transform: translate3d(100, 100, -100);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
-.img-container{
+.signup-img-container{
     width: 40%;
     height: 100%;
     border-top-left-radius: 1rem;
@@ -52,7 +62,7 @@
     gap: 1.2rem;
 }
 
-.title span{
+.signup-title span{
     font-size: 2rem;
     font-weight: 800;
     color: var(--primary-color);
@@ -95,12 +105,12 @@
 }
 
 .password input{
-    width: 53%;
+    width: 50%;
     height: 1.5rem;
 }
 
 .password button{
-    width: 7%;
+    width: 10%;
     height: 100%;
 }
 
@@ -120,7 +130,7 @@
 }
 
 @media screen and (max-height: 500px){
-    .main-container{
+    .signup-main-container{
         height: 90%;
     }
 }
@@ -142,10 +152,16 @@
         width: 100%;
         height: 140%;
     }
+    .default-property input{
+        width: auto;
+    }
+    .default-property button{
+        width: auto;
+    }
 }
 
-@media screen and (max-width: 630px){
-    .img-container{
+@media screen and (max-width: 674px){
+    .signup-img-container{
         width: 0%;
         height: 0%;
     }
@@ -154,29 +170,62 @@
         width: 100%;
         height: 100%;
     }
-    .default-property input{
-        width: 100%;
-    }
-    .password{
-        width: 100%;
-    }
     .default input{
-        width: 100%;
+        width: auto;
+    }
+    .password input{
+        width: 85%;
+    }
+    .password button{
+        width: 15%;
     }
 }
 
-@media screen and (max-width: 419px) {
+@media screen and (max-width: 410px) {
+    .signup-main-container{
+        width: 90%;
+        height: 77%;
+    }
+    .register{
+        gap: 1.3rem;
+    }
+    .signup-title span{
+        font-size: 1rem;
+    }
+    .default-property span{
+        font-size: 0.8rem;
+    }
+    .default input{
+        width: auto;
+    }
     .password input{
-        width: 80%;
+        width: 85%;
     }
     .password button{
-        width: 20%;
+        width: 15%;
     }
-    .sign-up{
-        flex-direction: column;
-        gap: 0.2rem;
+    .login-button span{
+        font-size: 0.8rem;
     }
-    .sign-up button{
+    .link{
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-height: 527px) {
+    .signup-main-container{
+        height: 90%;
+    }
+}
+
+@media screen and (max-height: 472px) {
+    .signup-main-container{
+        height: 95%;
+    }
+}
+
+@media screen and (max-height: 444px) {
+    .signup-main-container{
         height: 100%;
     }
 }
