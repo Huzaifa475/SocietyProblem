@@ -1,7 +1,24 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { deleteAlerts, fetchAlerts } from '../../redux/alertSlice'
 import './index.css'
+import moment from 'moment';
 
 function Alert() {
+
+    const dispatch = useDispatch();
+    const { alerts, loading, error } = useSelector(state => state.alert)
+
+    useEffect(() => {
+        dispatch(fetchAlerts())
+    }, [dispatch])
+
+    const handleClearButton = () => {
+        dispatch(deleteAlerts())
+    }
+
+    console.log(alerts);
+    
     return (
         <div className='alert-page'>
             <div className='alert-container'>
@@ -10,46 +27,16 @@ function Alert() {
                     <button>Clear All</button>
                 </div>
                 <div className='alert-main-container'>
-                    <div className='alert-content'>
-                        <span>abczewfgyuwgbcwkbcwejvb</span>
-                        <span>10-e2yy28</span>
-                    </div>
-                    <div className='alert-content'>
-                        <span>abczewfgyuwgbcwkbcwejvb</span>
-                        <span>10-e2yy28</span>
-                    </div>
-                    <div className='alert-content'>
-                        <span>abczewfgyuwgbcwkbcwejvb</span>
-                        <span>10-e2yy28</span>
-                    </div>
-                    <div className='alert-content'>
-                        <span>abczewfgyuwgbcwkbcwejvb</span>
-                        <span>10-e2yy28</span>
-                    </div>
-                    <div className='alert-content'>
-                        <span>abczewfgyuwgbcwkbcwejvb</span>
-                        <span>10-e2yy28</span>
-                    </div>
-                    <div className='alert-content'>
-                        <span>abczewfgyuwgbcwkbcwejvb</span>
-                        <span>10-e2yy28</span>
-                    </div>
-                    <div className='alert-content'>
-                        <span>abczewfgyuwgbcwkbcwejvb</span>
-                        <span>10-e2yy28</span>
-                    </div>
-                    <div className='alert-content'>
-                        <span>abczewfgyuwgbcwkbcwejvb</span>
-                        <span>10-e2yy28</span>
-                    </div>
-                    <div className='alert-content'>
-                        <span>abczewfgyuwgbcwkbcwejvb</span>
-                        <span>10-e2yy28</span>
-                    </div>
-                    <div className='alert-content'>
-                        <span>abczewfgyuwgbcwkbcwejvb</span>
-                        <span>10-e2yy28</span>
-                    </div>
+                    {
+                        alerts.map((alert) => {
+                            return (
+                                <div className='alert-content' key={alert._id}>
+                                    <span>{alert.content}</span>
+                                    <span>{moment(alert.createdAt).format('DD/MM/YYYY')}</span>
+                                </div>
+                            )
+                        })
+                    }
                 </div>
             </div>
         </div>
