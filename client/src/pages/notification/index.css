@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root{
+    --primary-color: #2d4052;
+    --secondary-color: #5b80a4;
+    --netural-background: #999999;
+    font-family: "Poppins", "Raleway", sans-serif;
+}
+
+::-webkit-scrollbar {
+    width: 2px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+*{
+    margin: none;
+    padding: none;
+    box-sizing: border-box;
+}
+
+html body{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.notification-page{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.notification-container{
+    width: 90%;
+    height: 90%;
+    padding: 2%;
+    border-radius: 0.4rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.notification-title{
+    width: 100%;
+    height: 10%;
+    border-bottom: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.notification-title span{
+    font-size: 100%;
+    font-weight: 800;
+    color: var(--primary-color);
+}
+
+.notification-title button{
+    width: 30%;
+    height: 70%;
+    text-align: right;
+    color: rgb(168, 168, 168);
+    border-radius: 0.2rem;
+    border: none;
+    background-color: white;
+}
+
+.notification-title button:hover{
+    cursor: pointer;
+}
+
+.notification-main-container{
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.notification-content{
+    width: 100%;
+    min-height: 3rem;
+    padding: 0.2rem;
+    border-radius: 0.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.notification-content:nth-child(odd){
+    background-color: #e9f7fa;
+}
+
+.notification-content:nth-child(even){
+    background-color: #f0f9fc;
+}
+
+.notification-content span{
+    font-weight: 500;
+    color: var(--netural-background);
+}
+
+@media screen and (max-width: 378px){
+    .notification-content{
+        min-height: 4rem;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

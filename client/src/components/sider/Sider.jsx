@@ -56,14 +56,15 @@ function Sider() {
         <div className="admin-information-container">
             <button>Admin Information</button>
         </div>
-        <div className='admin-information-container'>
-            {
-                accessToken ? 
-                <button></button>
-                :
+        {
+            accessToken ?
+            <>
+            </>
+            :
+            <div className='admin-information-container'>
                 <button onClick={handleLogin}>Login</button>
-            }
-        </div>
+            </div>
+        }
         <div className="logout-button-container">
             <button onClick={handleLogout}>Logout <FontAwesomeIcon icon={faRightFromBracket}/></button>
         </div>
