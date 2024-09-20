@@ -23,9 +23,10 @@ export const fetchAlerts = () => async (dispatch) => {
 export const deleteAlerts = () => async (dispatch) => {
     const accessToken = localStorage.getItem('accessToken')
     try {
+        dispatch(setLoading())
         const res = await axios({
             method: 'delete',
-            url: '/api/v1/alert/delete',
+            url: '/api/v1/alert/deleteByUser',
             headers: {
                 'Content-Type': '/application.json',
                 'Authorization': `Bearer ${accessToken}`
@@ -48,7 +49,12 @@ const alertSlice = createSlice({
     initialState,
     reducers: {
         setAlerts: (state, action) => {
-            state.alerts = action.payload,
+            if(Array.isArray(action.payload)){
+                state.alerts = [...state.alerts, ...action.payload];
+            }
+            else{
+                state.alerts = [action.payload, ...state.alerts];
+            }
             state.loading = false,
             state.error = null
         },

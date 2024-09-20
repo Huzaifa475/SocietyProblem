@@ -2,7 +2,8 @@ import { apiError } from "../util/apiError.js"
 import { apiResponse } from "../util/apiResponse.js"
 import { asyncHandler } from "../util/asyncHandler.js"
 import { Alert } from "../model/alert.model.js"
-import { isValidObjectId } from "mongoose"
+import mongoose, { isValidObjectId, now } from "mongoose"
+import {io} from "../index.js"
 
 const createAlert = asyncHandler(async (req, res) => {
 
@@ -20,6 +21,12 @@ const createAlert = asyncHandler(async (req, res) => {
             })
         )
     )
+
+    io.to(req.user.societyName).emit('receive-alert',{
+        content: content,
+        createdAt: new Date,
+        _id: new mongoose.Types.ObjectId()
+    })
 
     return res
     .status(200)

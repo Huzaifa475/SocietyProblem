@@ -4,6 +4,8 @@ import { apiError } from "../util/apiError.js";
 import { apiResponse } from "../util/apiResponse.js";
 import { asyncHandler } from "../util/asyncHandler.js";
 import {Notification} from "../model/notification.model.js";
+import {io} from "../index.js"
+import mongoose from "mongoose";
 
 const createProblem = asyncHandler(async(req, res) => {
 
@@ -42,6 +44,12 @@ const createProblem = asyncHandler(async(req, res) => {
         )
     );
 
+    io.to(req.user.societyName).emit('receive-notification', {
+        content: notificationContent,
+        createdAt: new Date(),
+        _id: new mongoose.Types.ObjectId(),
+    });
+    
     if(!notification.length){
         throw new apiError(500, "Server error, Notification could not be created");
     }

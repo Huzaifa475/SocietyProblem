@@ -49,7 +49,11 @@ const notificationSlice = createSlice({
     initialState,
     reducers: {
         setNotifications: (state, action) => {
-            state.notifications = action.payload;
+            if (Array.isArray(action.payload)) {
+                state.notifications = action.payload;
+            } else {
+                state.notifications = [action.payload, ...state.notifications];
+            }
             state.loading = false;
             state.error = null;
         },

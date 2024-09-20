@@ -1,17 +1,45 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { deleteNotifications, fetchNotifications } from '../../redux/notificationSlice'
+import { deleteNotifications, fetchNotifications, setNotifications } from '../../redux/notificationSlice'
 import moment from 'moment'
+import { io } from 'socket.io-client'
 import './index.css'
 
 function Notification() {
-
+    const [socket, setSocket] = useState(null);
     const dispatch = useDispatch();
-    const { notifications, loading, error } = useSelector(state => state.notification)
+    const notifications = useSelector(state => state.notification.notifications)
+    const loading = useSelector(state => state.notification.loading)
+    const error = useSelector(state => state.notification.error)
 
     useEffect(() => {
         dispatch(fetchNotifications())
     }, [dispatch])
+
+    useEffect(() => {
+        const newSocket = io("http://localhost:5000", { transports: ['websocket'] });
+        setSocket(newSocket);
+
+        newSocket.on('connect', () => {
+            console.log('Socket connected:', newSocket.id);
+        });
+
+        newSocket.on('disconnect', () => {
+            console.log('Socket disconnected');
+        });
+
+        const societyName = localStorage.getItem('societyName');
+
+        newSocket.emit('join', societyName);
+
+        newSocket.on('receive-notification', (notification) => {
+            dispatch(setNotifications(notification));
+        })
+
+        return () => {
+            newSocket.disconnect();
+        }
+    }, [dispatch, setNotifications])
 
     const handleClearButton = () => {
         dispatch(deleteNotifications());
@@ -48,7 +76,7 @@ function Notification() {
             </div>
         )
     }
-    
+
     return (
         <div className='notification-page'>
             <div className='notification-container'>
@@ -57,16 +85,16 @@ function Notification() {
                     <button onClick={handleClearButton}>Clear All</button>
                 </div>
                 <div className='notification-main-container'>
-                    {
-                        notifications.map((notification) => {
-                            return (
-                                <div className='notification-content' key={notification._id}>
-                                    <span>{notification.content}</span>
-                                    <span>{moment(notification.createdAt).format('DD/MM/YYYY')}</span>
-                                </div>
-                            )
-                        })
-                    }
+                    {notifications && notifications.length > 0 ? (
+                        notifications.map((notification) => (
+                            <div className='notification-content' key={notification._id}>
+                                <span>{notification.content}</span>
+                                <span>{moment(notification.createdAt).format('LLL')}</span>
+                            </div>
+                        ))
+                    ) : (
+                        <div>No notifications to display</div>
+                    )}
                 </div>
             </div>
         </div>

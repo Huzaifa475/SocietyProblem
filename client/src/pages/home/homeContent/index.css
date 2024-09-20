@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root{
+    --primary-color: #2d4052;
+    --secondary-color: #5b80a4;
+    --netural-background: #999999;
+    font-family: "Poppins", "Raleway", sans-serif;
+}
+
+*{
+    margin: none;
+    padding: none;
+    box-sizing: border-box;
+}
+
+html body{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.card-container{
+    width: 80vw;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-main-container{
+    width: 100%;
+    height: 70%;
+    padding: 2%;
+    display: grid;   
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2%;
+}
+
+.cards-content{
+    padding: 4%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    background-color: black;
+    transition: box-shadow 0.5s ease-in-out;
+}
+
+.cards-content:hover{
+    box-shadow: 0 4px 10px rgb(0, 0, 0);
+}
+
+.cards-content button{
+    padding: 3%;
+    border-radius: 0.3rem;
+    color: white;
+    transition: box-shadow 0.5s ease-in-out;
+}
+
+.cards-content button:hover{
+    /* box-shadow: 0px 4px 10px black; */
+    /* transform: scale(1.01); */
+}
+
+.event-card{
+    background-color: #9cbeed;
+    border: 1.5px solid #5d7fad;
+}
+
+.event-card button{
+    border: 1px solid #04366c;
+    background-color: #2872c1;
+}
+
+.event-card button:hover{
+    background-color: #0056b3;
+}
+
+.problem-card{
+    background-color: #ffc8c8;
+    border: 1.5px solid #c78e8e;
+}
+
+.problem-card button{
+    border: 1px solid #c93838;
+    background-color: #FF4D4D;
+}
+
+.problem-card button:hover{
+    background-color: #C9302C;
+}
+
+.disscusion-card{
+    background-color: #a6e6b8;
+    border: 1.5px solid #58b773;
+}
+
+.disscusion-card button{
+    background-color:  #28A745;
+    border: 1px solid #0e6e24;
+}
+
+.disscusion-card button:hover{
+    background-color: #218838;
+}
+
+.cards-icon{
+    width: 100%;
+    height: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cards-body{
+    width: 100%;
+    height: 50%;
+}
+
+.cards-button{
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon{
+    width: 50%;
+    height: 50%;
+}

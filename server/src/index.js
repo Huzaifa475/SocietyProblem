@@ -13,20 +13,20 @@ const server = createServer(app);
 
 const io = new Server(server, {
     cors: {
-        origin: process.env.CORS_ORIGIN || "*",
+        origin: "*",
         credentials: true, 
     }
 })
 
 io.on('connection', (socket) => {
 
-    socket.on('join', async (societyId) => {
+    socket.on('join', async (societyName) => {
         try {
-            socket.join(societyId);
+            socket.join(societyName);
 
-            console.log(`User joined society: ${societyId}`);
+            console.log(`User joined society: ${societyName}`);
     
-            const messageHistory = await Message.find({societyId}).sort({createdAt: -1});
+            const messageHistory = await Message.find({societyName}).sort({createdAt: -1});
     
             socket.emit('messageHistory', messageHistory);   
         } catch (error) {
@@ -73,3 +73,5 @@ connectDB()
 .catch((err) => {
     console.log("MONGO DB connection failed !!!", err);
 })
+
+export {io}
