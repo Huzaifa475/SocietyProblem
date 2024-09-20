@@ -59,11 +59,6 @@ html body{
     transition: box-shadow 0.5s ease-in-out;
 }
 
-.cards-content button:hover{
-    /* box-shadow: 0px 4px 10px black; */
-    /* transform: scale(1.01); */
-}
-
 .event-card{
     background-color: #9cbeed;
     border: 1.5px solid #5d7fad;

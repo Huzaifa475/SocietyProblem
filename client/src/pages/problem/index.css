@@ -1,0 +1,336 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root{
+    --primary-color: #2d4052;
+    --secondary-color: #5b80a4;
+    --netural-background: #999999;
+    font-family: "Poppins", "Raleway", sans-serif; 
+}
+
+html body{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.problem-container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.problem-main-container{
+    width: 90%;
+    height: 90%;
+    padding: 2%;
+    border-radius: 0.5rem;
+    box-shadow: 0px 4px 8px black;
+    display: flex;
+    gap: 2%;
+}
+
+.problem-create-section{
+    width: 23%;
+    height: 100%;
+    border-right: 1px solid black;
+    display: flex;
+    flex-direction: column;
+}
+
+.problem-create-title{
+    width: 100%;
+    height: 25%;
+}
+
+.problem-create-title span{
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.problem-create-inputs{
+    width: 100%;
+    height: 75%;
+    display: flex;
+    flex-direction: column;
+}
+
+.problem-create-content{
+    width: 100%;
+    height: 20%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.problem-create-content span{
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--secondary-color)
+}
+
+.problem-create-content input{
+    width: 90%;
+    height: 45%;
+    border-radius: 0.2rem;
+    border: 1px solid black;
+}
+
+.problem-create-content input:focus{
+    border: 1.5px solid black;
+    outline: none;
+}
+
+.problem-create-category{
+    width: 100%;
+    height: 45%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.problem-create-category span{
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--secondary-color)
+}
+
+.problem-create-category select{
+    width: 90%;
+    min-height: 20%;
+    max-height: 30%;
+    border-radius: 0.2rem;
+    border: 1px solid black;
+    overflow-y: scroll;
+}
+
+.problem-create-category select{
+    border: 1px solid black;
+    outline: none;
+}
+
+.problem-create-button{
+    width: 100%;
+    height: 35%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.problem-create-button button{
+    width: 35%;
+    height: 30%;
+    color: white;
+    background-color: black;
+    border: 1px solid black;
+    border-radius: 0.5rem;
+    transition: transform 0.4s ease-in-out;
+}
+
+.problem-create-button button:hover{
+    transform: scale(1.01);
+}
+
+.problem-display-section{
+    width: 75%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.problem-display-top{
+    width: 100%;
+    height: 10%;
+    border-bottom: 1px solid black;
+}
+
+.problem-display-top span{
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.problem-display-bottom{
+    width: 100%;
+    height: 90%;
+    padding: 1%;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    gap: 1%;
+}
+
+.problem-display-main{
+    width: 100%;
+    height: auto;
+    padding: 0.3rem;
+    border-radius: 0.3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.problem-display-main:nth-child(odd){
+    background-color: #91adc8;
+}
+
+.problem-display-main:nth-child(even){
+    background-color: #9bbcd9;
+}
+
+.problem-display-title span{
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.problem-display-title p{
+    display: inline;
+    font-weight: 500;
+    color: var(--primary-color);
+}
+
+.problem-display-category span{
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.problem-display-category p{
+    display: inline;
+    font-weight: 500;
+    color: var(--primary-color);
+}
+
+.problem-display-status span{
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.problem-display-status p{
+    display: inline;
+    font-weight: 500;
+    color: var(--primary-color);
+}
+
+.problem-display-upvotes{
+    display: flex;
+    gap: 1%;
+}
+
+.problem-display-upvotes button{
+    border-radius: 0.3rem;
+    background-color: white;
+    border: 1px solid white;
+}
+
+.problem-display-upvotes span{
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.problem-display-buttons{
+    width: 100%;
+    display: flex;
+    gap: 2%;
+}
+
+.problem-display-buttons button{
+    height: 1.5rem;
+    border-radius: 0.3rem;
+    color: rgb(215, 232, 232);
+    background-color: #5c7e9e;
+    border: none;
+}
+
+.problem-display-buttons button:hover{
+    background-color: #356493;
+}
+
+.update-container{
+    width: 100%;
+    height: auto;
+    padding: 1%;
+    border: 1px solid black;
+    border-radius: 0.3rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.update-title span{
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.update-inputs{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.update-content{
+    display: flex;
+    align-items: center;
+    gap: 1%;
+}
+
+.update-content input{
+    width: 80%;
+    border-radius: 0.2rem;
+    border: 1px solid black;
+}
+
+.update-content input:focus{
+    border: 1.5px solid black;
+    outline: none;
+}
+
+.update-category{
+    display: flex;
+    align-items: center;
+    gap: 1%;
+}
+
+.update-category select{
+    width: 40%;
+    border-radius: 0.2rem;
+    border: 1px solid black;
+}
+
+.update-category select:focus{
+    border: 1.5px solid black;
+    outline: none;
+}
+
+.update-status{
+    display: flex;
+    align-items: center;
+    gap: 1%;
+}
+
+.update-status select{
+    width: 40%;
+    border-radius: 0.2rem;
+    border: 1px solid black;
+}
+
+.update-status select:focus{
+    border: 1.5px solid black;
+    outline: none;
+}
+
+.update-button{
+    width: 100%;
+    height: auto;
+}
+
+.update-button button{
+    padding: 8px;
+    color: white;
+    border-radius: 0.2rem;
+    background-color: black;
+    border: none;
+}

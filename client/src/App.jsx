@@ -4,6 +4,8 @@ import Home from './pages/home/Home.jsx'
 import InfoUpload from './pages/information-upload/InfoUpload.jsx'
 import Notification from './pages/notification/Notification.jsx'
 import Alert from './pages/alert/Alert.jsx'
+import Event from './pages/event/Event.jsx'
+import Problem from './pages/problem/Problem.jsx'
 import { Route, Routes } from 'react-router-dom'
 import './App.css'
 
@@ -17,6 +19,8 @@ function App() {
         <Route path='/home' element={<Home/>}/>
         <Route path='/notification' element={<Notification/>}/>
         <Route path='/alert' element={<Alert/>}/>
+        <Route path='/event' element={<Event/>}/>
+        <Route path='/problem' element={<Problem/>}/>
       </Routes>
     </>
   )
