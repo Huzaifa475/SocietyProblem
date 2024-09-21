@@ -38,6 +38,8 @@ function Sider() {
         }
         finally{
             localStorage.removeItem('accessToken');
+            localStorage.removeItem('societyName');
+            localStorage.removeItem('userId');
         }
     }
 

@@ -9,9 +9,9 @@ const messageSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
     },
-    societyId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Society"
+    societyName: {
+        type: String,
+        required: true
     },
     createdAt: {
         type: Date,

@@ -41,7 +41,7 @@ html body{
 
 .profile-display-section{
     width: 100%;
-    height: 40%;
+    height: 42%;
     display: flex;
     align-items: center;
 }
@@ -56,8 +56,8 @@ html body{
 }
 
 .profile-img-display-container img{
-    width: 50%;
-    height: 70%;
+    width: 40%;
+    height: 55%;
     border-radius: 50%;
     border: 1px solid black;
 }
@@ -84,6 +84,11 @@ html body{
     color: var(--primary-color);
 }
 
+.profile-update-button{
+    display: flex;
+    gap: 1%;
+}
+
 .profile-update-button button{
     width: 100%;
     height: 100%;
@@ -96,7 +101,7 @@ html body{
 
 .profile-update-section{
     width: 100%;
-    height: 60%;
+    height: 58%;
     padding: 1%;
     display: flex;
     flex-direction: column;

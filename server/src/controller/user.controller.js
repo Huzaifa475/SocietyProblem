@@ -205,7 +205,7 @@ const updateUser = asyncHandler(async(req, res) => {
         
         updateFields.societyName = societyName
     }
-    else{
+    else if (societyName && req.user?.admin){
         throw new apiError(404, "Admin cannot change its society")
     }
 

@@ -26,7 +26,7 @@ io.on('connection', (socket) => {
 
             console.log(`User joined society: ${societyName}`);
     
-            const messageHistory = await Message.find({societyName}).sort({createdAt: -1});
+            const messageHistory = await Message.find({societyName}).sort({createdAt: 1});
     
             socket.emit('messageHistory', messageHistory);   
         } catch (error) {
@@ -39,20 +39,20 @@ io.on('connection', (socket) => {
     socket.on('send-message', async (messageDate) => {
 
         try {
-            const {content, createdBy, societyId} = messageDate;
+            const {content, createdBy, societyName} = messageDate;
 
-            if (!content || !createdBy || !societyId) {
+            if (!content || !createdBy || !societyName) {
                 socket.emit('error', 'Missing required fields');
                 return;
             }
 
-            io.to(societyId).emit('receiveMessage', messageDate);
-    
-            await Message.create({
+            const message = await Message.create({
                 content,
                 createdBy,
-                societyId
+                societyName
             })    
+
+            io.to(societyName).emit('receiveMessage', message);
         } catch (error) {
             console.error('Error sending message:', error);
             socket.emit('error', 'Message could not be sent.');

@@ -27,8 +27,10 @@ function Login() {
       toast.success(res?.data?.message);
       const token = res.data?.data?.accessToken;
       const societyName = res.data?.data?.user?.societyName;
+      const userId = res.data?.data?.user?._id;
       localStorage.setItem('accessToken', token);
       localStorage.setItem('societyName', societyName);
+      localStorage.setItem('userId', userId);
       setTimeout(() => {
         navigate("/home", {replace: true})
       }, 500)

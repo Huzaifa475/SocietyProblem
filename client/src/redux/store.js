@@ -9,7 +9,7 @@ const store = configureStore({
         notification: notificationReducer,
         alert: alertReducer,
         problem: problemReducer,
-        profile: problemReducer
+        profile: profileReducer
     }
 })
 
