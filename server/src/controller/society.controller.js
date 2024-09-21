@@ -40,7 +40,7 @@ const getSocietyProblems = asyncHandler(async(req, res) => {
         {
             societyName: req.user?.societyName
         }
-    )
+    ).sort({createdAt: -1})
 
     return res
     .status(200)

@@ -159,7 +159,7 @@ html body{
     width: 100%;
     height: 90%;
     padding: 1%;
-    overflow-y: scroll;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
     gap: 1%;
@@ -211,6 +211,17 @@ html body{
 }
 
 .problem-display-status p{
+    display: inline;
+    font-weight: 500;
+    color: var(--primary-color);
+}
+
+.problem-display-created-at span{
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.problem-display-created-at p{
     display: inline;
     font-weight: 500;
     color: var(--primary-color);
@@ -333,4 +344,28 @@ html body{
     border-radius: 0.2rem;
     background-color: black;
     border: none;
+}
+
+@media screen and (max-width: 775px) {
+    .problem-create-section{
+        width: 35%;
+    }
+    .problem-create-title{
+        height: 15%;
+    }
+    .problem-create-title span{
+        font-size: 1.3rem;
+    }   
+}
+
+@media screen and (max-width: 580px){
+    .problem-create-button button{
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 380px){
+    .problem-create-button button{
+        width: 60%;
+    }
 }

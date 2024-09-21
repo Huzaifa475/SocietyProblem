@@ -30,7 +30,11 @@ const problemSchema = new mongoose.Schema({
     societyName: {
         type: String,
         required: true
-    }
+    },
+    upvotedBy: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    }]
 }, {timestamps: true})
 
 export const Problem = mongoose.model("Problem", problemSchema)

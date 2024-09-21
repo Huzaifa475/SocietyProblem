@@ -61,7 +61,7 @@ const createProblem = asyncHandler(async(req, res) => {
 
 const updateProblem = asyncHandler(async(req, res) => {
 
-    const {content, category, status, upvote} = req.body
+    const {content, category, status} = req.body
     const {problemId} = req.params
 
     if(!isValidObjectId(problemId)){
@@ -76,8 +76,7 @@ const updateProblem = asyncHandler(async(req, res) => {
             {
                 content,
                 category,
-                status,
-                upvote
+                status
             },
             {
                 new: true
@@ -91,6 +90,35 @@ const updateProblem = asyncHandler(async(req, res) => {
     return res
     .status(200)
     .json(new apiResponse(200, problem, "Problem updated successfully"))
+})
+
+const updateUpvote = asyncHandler(async(req, res) => {
+
+    const {upvote} = req.body
+    const {problemId} = req.params
+
+    if(!isValidObjectId(problemId)){
+        throw new apiError(400, "Problem does not exists")
+    }
+
+    const problem = await Problem.findById(problemId)
+
+    if(!problem){
+        throw new apiError(402, "Problem not found")
+    }
+
+    if(problem.upvotedBy.includes(req.user?._id)){
+        throw new apiError(404, "User already upvoted")
+    }
+
+    problem.upvote += 1
+    problem.upvotedBy.push(req.user._id);
+
+    await problem.save();
+
+    return res
+    .status(200)
+    .json(new apiResponse(200, problem, "Upvote updated successfully"))
 })
 
 const deleteProblem = asyncHandler(async(req, res) => {
@@ -115,4 +143,4 @@ const deleteProblem = asyncHandler(async(req, res) => {
     .json(new apiResponse(200, problem, "Problem deleted successfully"))
 })
 
-export {createProblem, updateProblem, deleteProblem}
+export {createProblem, updateProblem, deleteProblem, updateUpvote}
