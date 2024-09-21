@@ -25,7 +25,8 @@ html body{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    background-color: rgb(240, 245, 240);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    background-color: white;
 }
 
 .header-society-name{
@@ -60,8 +61,16 @@ html body{
     background-color: white;
 }
 
-.header-icon button:hover{
+.header-notification-icon button:hover{
     border: 1px solid rgb(144, 144, 144);
+}
+
+.header-alert-icon button{
+    background-color: black;
+}
+
+.header-alert-icon button:hover{
+    border: 1px solid white;
 }
 
 @media screen and (max-width: 994px) {

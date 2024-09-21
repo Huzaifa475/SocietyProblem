@@ -1,0 +1,182 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root{
+    --primary-color: #2d4052;
+    --secondary-color: #5b80a4;
+    --netural-background: #999999;
+    font-family: "Poppins", "Raleway", sans-serif;
+}
+
+*{
+    margin: none;
+    padding: none;
+    box-sizing: border-box;
+}
+
+html body{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.profile-container{
+    width: 100vw;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-main-container{
+    width: 95%;
+    height: 95%;
+    padding: 2%;
+    border-radius: 0.3rem;
+    box-shadow: 0px 4px 8px black;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-display-section{
+    width: 100%;
+    height: 40%;
+    display: flex;
+    align-items: center;
+}
+
+.profile-img-display-container{
+    width: 30%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+}
+
+.profile-img-display-container img{
+    width: 50%;
+    height: 70%;
+    border-radius: 50%;
+    border: 1px solid black;
+}
+
+.profile-info-container{
+    width: 70%;
+    height: 100%;
+    padding: 1%;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+}
+
+.profile-info-container p{
+    font-weight: 400;
+    color: var(--secondary-color);
+    display: inline;
+}
+
+.profile-info-container span{
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.profile-update-button button{
+    width: 100%;
+    height: 100%;
+    border: 1px solid black;
+    border-radius: 0.7rem;
+    font-weight: 600;
+    color: black;
+    background-color: white;
+}
+
+.profile-update-section{
+    width: 100%;
+    height: 60%;
+    padding: 1%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+}
+
+.update-name, .update-email, .update-phone, .update-address, .update-society-name, .update-submit-button{
+    display: flex;
+    flex-direction: column;
+}
+
+.update-name, .update-email, .update-phone, .update-address, .update-society-name, .update-submit-button span{
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.update-name input{
+    width: 30%;
+    border-radius: 0.3rem;
+    border: 1px solid black;
+}
+
+.update-name input:focus{
+    border: 1px solid black;
+    outline: none;
+}
+
+.update-email input{
+    width: 30%;
+    border-radius: 0.3rem;
+    border: 1px solid black;
+}
+
+.update-email input:focus{
+    border: 1px solid black;
+    outline: none;
+}
+
+.update-phone input{
+    width: 30%;
+    border-radius: 0.3rem;
+    border: 1px solid black;
+}
+
+.update-phone input:focus{
+    border: 1px solid black;
+    outline: none;
+}
+
+.update-address input{
+    width: 30%;
+    border-radius: 0.3rem;
+    border: 1px solid black;
+}
+
+.update-address input:focus{
+    border: 1px solid black;
+    outline: none;
+}
+
+.update-society-name input{
+    width: 30%;
+    border-radius: 0.3rem;
+    border: 1px solid black;
+}
+
+.update-society-name input:focus{
+    border: 1px solid black;
+    outline: none;
+}
+
+.update-submit-button{
+    padding-top: 0.2rem;
+}
+
+.update-submit-button button{
+    width: 10%;
+    height: 1.5rem;
+    color: white;
+    background-color: black;
+    border: none;
+    border-radius: 0.3rem;
+}

@@ -1,18 +1,16 @@
 import React from 'react'
-import EventCalendar from './calendar/EventCalendar.jsx'
+import './index.css'
+
 
 function Event() {
   return (
-    <div className='event-container'>
-      <div className='event-main-container'>
-        <div className='calendar-container'>
-          <EventCalendar />
-        </div>
+    <div className="event-container">
+      <div className="event-main-container">
         <div className="event-create-container">
-          bdbc
+          hjdsvbh
         </div>
-        <div className="event-right-container">
-          jbevjb
+        <div className="event-display-container">
+          jwdbvhvbhjacvhj
         </div>
       </div>
     </div>

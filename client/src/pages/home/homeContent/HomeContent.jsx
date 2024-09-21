@@ -22,7 +22,7 @@ function HomeContent() {
             </div>
             <div className="cards-content problem-card">
                 <div className="cards-icon">
-                    <FontAwesomeIcon icon={faTriangleExclamation} className='icon'/>
+                    <FontAwesomeIcon icon={faTriangleExclamation} className='icon problem-icon'/>
                 </div>
                 <div className="cards-body">
                     <span>Title</span>

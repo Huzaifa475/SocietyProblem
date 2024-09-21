@@ -22,7 +22,7 @@ function Header() {
         </div>
         <div className='header-icon'>
             <div className='header-alert-icon'>
-                <button onClick={handleAlert}><FontAwesomeIcon icon={faCircleExclamation} style={{color: "#000000", fontSize: "20px"}}/></button>
+                <button onClick={handleAlert}><FontAwesomeIcon icon={faCircleExclamation} style={{color: "#ffffff", fontSize: "20px", backgroundColor: '#000000'}}/></button>
             </div>
             <div className='header-notification-icon'>
                 <button onClick={handleNotification}><FontAwesomeIcon icon={faBell} style={{color: "#000000", fontSize: "20px"}}/></button>

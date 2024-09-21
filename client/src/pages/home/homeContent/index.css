@@ -60,45 +60,43 @@ html body{
 }
 
 .event-card{
-    background-color: #9cbeed;
-    border: 1.5px solid #5d7fad;
+    background-color: #DDA0DD;
 }
 
 .event-card button{
-    border: 1px solid #04366c;
-    background-color: #2872c1;
+    border: 1px solid #000000;
+    background-color: #000000;
 }
 
 .event-card button:hover{
-    background-color: #0056b3;
+    border: 1px solid white;
 }
 
 .problem-card{
-    background-color: #ffc8c8;
-    border: 1.5px solid #c78e8e;
+    background-color: rgb(249, 249, 116);
 }
 
 .problem-card button{
-    border: 1px solid #c93838;
-    background-color: #FF4D4D;
+    color: black;
+    border: 1px solid white;
+    background-color: white;
 }
 
 .problem-card button:hover{
-    background-color: #C9302C;
+    border: 1px solid black;
 }
 
 .disscusion-card{
-    background-color: #a6e6b8;
-    border: 1.5px solid #58b773;
+    background-color: #62d7ac;
 }
 
 .disscusion-card button{
-    background-color:  #28A745;
-    border: 1px solid #0e6e24;
+    background-color:  black;
+    border: 1px solid black;
 }
 
 .disscusion-card button:hover{
-    background-color: #218838;
+    border: 1px solid white;
 }
 
 .cards-icon{
@@ -112,6 +110,24 @@ html body{
 .cards-body{
     width: 100%;
     height: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2%;
+}
+
+.event-card, .disscusion-card span{
+    color: #000000;
+    font-family: 'Raleway';
+    font-size: large;
+    font-weight: 600;
+}
+
+.problem-card span{
+    color: white;
+    font-family: 'Raleway';
+    font-size: large;
+    font-weight: 600;
 }
 
 .cards-button{
@@ -125,4 +141,8 @@ html body{
 .icon{
     width: 50%;
     height: 50%;
+}
+
+.problem-icon{
+    color: white;
 }
