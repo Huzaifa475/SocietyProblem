@@ -4,6 +4,7 @@ import alertReducer from './alertSlice.js'
 import problemReducer from './problemSlice.js'
 import profileReducer from './profileSlice.js'
 import eventReducer from './eventSlice.js'
+import analyticsReducer from "./analyticsSlice.js";
 
 const store = configureStore({
     reducer: {
@@ -11,7 +12,8 @@ const store = configureStore({
         alert: alertReducer,
         problem: problemReducer,
         profile: profileReducer,
-        event: eventReducer
+        event: eventReducer,
+        analytics: analyticsReducer
     }
 })
 

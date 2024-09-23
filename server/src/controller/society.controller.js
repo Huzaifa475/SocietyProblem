@@ -4,6 +4,7 @@ import { asyncHandler } from "../util/asyncHandler.js";
 import { Event } from "../model/event.model.js";
 import { Society } from "../model/society.model.js";
 import { Problem } from "../model/problem.model.js";
+import {User} from '../model/user.model.js'
 
 const getSocietyMembers = asyncHandler(async(req, res) => {
 
@@ -16,9 +17,13 @@ const getSocietyMembers = asyncHandler(async(req, res) => {
         throw new apiError(404, "Society not found")
     }
 
+    const userIds = society[0].members;
+    
+    const membersDetails = await User.find({ _id: { $in: userIds } });
+    
     return res
     .status(200)
-    .json(new apiResponse(200, society, "All society members are fetch successfully"))
+    .json(new apiResponse(200, membersDetails, "All society members are fetch successfully"))
 })
 
 const getSocietyEvents = asyncHandler(async(req, res) => {

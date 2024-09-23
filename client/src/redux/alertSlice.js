@@ -50,7 +50,7 @@ const alertSlice = createSlice({
     reducers: {
         setAlerts: (state, action) => {
             if(Array.isArray(action.payload)){
-                state.alerts = [...state.alerts, ...action.payload];
+                state.alerts = action.payload;
             }
             else{
                 state.alerts = [action.payload, ...state.alerts];

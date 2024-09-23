@@ -10,6 +10,9 @@ function Alert() {
     const [socket, setSocket] = useState(null);
     const dispatch = useDispatch();
     const { alerts, loading, error } = useSelector(state => state.alert)
+    const admin = localStorage.getItem('admin')
+    const [content, setContent] = useState('')
+    
 
     useEffect(() => {
         dispatch(fetchAlerts())
@@ -74,6 +77,9 @@ function Alert() {
         )
     }
     
+    const handleCreateAlert = () => {
+
+    }
     return (
         <div className='alert-page'>
             <div className='alert-container'>
@@ -81,6 +87,21 @@ function Alert() {
                     <span>Alerts</span>
                     <button onClick={handleClearButton}>Clear All</button>
                 </div>
+                {
+                    admin === true && 
+                    <div className="alert-create-section">
+                        <div className="alert-create-title">
+                            <span>Create a new Alert</span>
+                        </div>
+                        <div className="alert-create-content">
+                            <span>Content </span>
+                            <input type="text" value={content} onChange={(e) => setContent(e.target.value)} autoComplete='off'/>
+                        </div>
+                        <div className="alert-create-button">
+                            <button onClick={handleCreateAlert}>Create</button>
+                        </div>
+                    </div>
+                }
                 <div className='alert-main-container'>
                     {
                         alerts && alerts.length > 0 ? 

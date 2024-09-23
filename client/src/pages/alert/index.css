@@ -110,6 +110,54 @@ html body{
     color: #721c24;
 }
 
+.alert-create-section{
+    width: 100%;
+    height: 25%;
+    display: flex;
+    flex-direction: column;
+    gap: 10%;
+}
+
+.alert-create-title span{
+    font-weight: 900 !important;
+}
+
+.alert-create-section span{
+    font-weight: 600;
+    color: black;
+}
+
+.alert-create-content{
+    width: 100%;
+    height: 40%;
+}
+
+.alert-create-content input{
+    width: 20%;
+    height: 100%;
+    border-radius: 0.4rem;
+    border: 1px solid black;
+}
+
+.alert-create-content input:focus{
+    border: 1px solid black;
+    outline: none;
+}
+
+.alert-create-button{
+    width: 100%;
+    height: 30%;
+}
+
+.alert-create-button button{
+    width: 10%;
+    height: 100%;
+    border: none;
+    color: white;
+    border-radius: 0.4rem;
+    background-color: #c0747c;
+}
+
 @media screen and (max-width: 378px){
     .alert-content{
         min-height: 4rem;
