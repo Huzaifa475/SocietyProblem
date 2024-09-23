@@ -43,7 +43,7 @@ function InfoUpload() {
             }) 
             toast.success(res?.data?.message);
             setTimeout(() => {
-                navigate('/')
+                navigate('/home', {replace: true})
             }, 500);
         } catch (error) {
             if (error.response) {

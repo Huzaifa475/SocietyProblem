@@ -34,7 +34,12 @@ function Login() {
       localStorage.setItem('userId', userId);
       localStorage.setItem('admin', isAdmin);
       setTimeout(() => {
-        navigate("/home", {replace: true})
+        if(societyName === undefined){
+          navigate("/information-upload", {replace: true})
+        }
+        else{
+          navigate("/home", {replace: true})
+        }
       }, 500)
     } catch (error) {
       if (error.response) {
