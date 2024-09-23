@@ -68,15 +68,19 @@ const updateProblem = asyncHandler(async(req, res) => {
         throw new apiError(400, "Problem does not exits")
     }
 
+    const updatedFields = {}
+
+    if(content) updatedFields.content = content
+    if(category) updatedFields.category = category
+    if(status) updatedFields.status = status
+
     let problem = await Problem.findById(problemId)
 
     if(problem.createdBy.equals(req.user._id) || req.user.admin === true){
         problem = await Problem.findByIdAndUpdate(
             problemId,
             {
-                content,
-                category,
-                status
+                ...updatedFields
             },
             {
                 new: true

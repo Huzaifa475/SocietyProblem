@@ -40,6 +40,7 @@ function Sider() {
             localStorage.removeItem('accessToken');
             localStorage.removeItem('societyName');
             localStorage.removeItem('userId');
+            localStorage.removeItem('admin');
         }
     }
 

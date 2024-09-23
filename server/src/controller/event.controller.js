@@ -39,16 +39,20 @@ const updateEvent = asyncHandler(async(req, res) => {
         throw new apiError(404, "Event does not exists")
     }
 
+    const updatedFields = {}
+
+    if(title) updatedFields.title = title
+    if(description) updatedFields.description = description
+    if(location) updatedFields.location = location
+    if(onDate) updatedFields.onDate = onDate
+
     let event = await Event.findById(eventId);
 
     if(event.createdBy.equals(req.user?._id) || req.user?.admin){
         event = await Event.findByIdAndUpdate(
             eventId, 
             {
-                title,
-                description,
-                location,
-                onDate
+                ...updatedFields
             },
             {
                 new: true

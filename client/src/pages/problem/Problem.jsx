@@ -28,7 +28,6 @@ function Problem() {
     
     const handleShowDropdown = (problem) => {
         if (selectedProblem === problem._id) {
-            console.log("Closing dropdown for problem:", problem._id);
             setSelectedProblem(null);
             setShowDropdown(false)
         } else {
@@ -36,11 +35,7 @@ function Problem() {
             setShowDropdown(true);
         }
     }
-
-    const handleDelete = (problemId) => {
-        dispatch(deleteProblem(problemId));
-    }
-
+    
     return (
         <div className='problem-container'>
             <div className="problem-main-container">

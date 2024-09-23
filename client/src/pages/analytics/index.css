@@ -28,28 +28,3 @@ html body{
     padding: 0;
     height: 100%;
 }
-
-.calendar-container{
-    max-width: 250px;
-    max-height: 295px;
-    width: fit-content;
-    height: fit-content;
-}
-
-.css-1rtg91x-MuiDateCalendar-root{
-    max-width: 250px !important;
-    max-height: 295px !important;
-    height: 295px !important;
-}
-
-.css-1aqny2q-MuiPickersCalendarHeader-root{
-    background-color: var(--primary-color);
-}
-
-.css-23p0if-MuiButtonBase-root-MuiPickersDay-root:not(.Mui-selected){
-    background-color: var(--primary-color) !important; 
-}
-
-.css-114bzxb-MuiBadge-badge{
-    background-color: var(--secondary-color) !important;
-}

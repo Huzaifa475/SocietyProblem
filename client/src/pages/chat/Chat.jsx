@@ -33,7 +33,7 @@ function Chat() {
         })
 
         newSocket.on('receiveMessage', (messageData) => {
-            setChats((prevChats) => [messageData, ...prevChats])
+            setChats((prevChats) => [...prevChats, messageData])
         })
 
         return () => {

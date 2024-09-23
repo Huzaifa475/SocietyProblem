@@ -28,9 +28,11 @@ function Login() {
       const token = res.data?.data?.accessToken;
       const societyName = res.data?.data?.user?.societyName;
       const userId = res.data?.data?.user?._id;
+      const isAdmin = res.data?.data?.user?.admin;
       localStorage.setItem('accessToken', token);
       localStorage.setItem('societyName', societyName);
       localStorage.setItem('userId', userId);
+      localStorage.setItem('admin', isAdmin);
       setTimeout(() => {
         navigate("/home", {replace: true})
       }, 500)
