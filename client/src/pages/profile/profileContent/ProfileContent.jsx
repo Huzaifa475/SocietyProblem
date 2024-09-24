@@ -1,30 +1,36 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch , useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './index.css'
 import { fetchProfile, updateProfile } from '../../../redux/profileSlice'
 import { Toaster } from 'react-hot-toast';
+import signupImg from '../../../assets/sign-upImg.jpg'
+import axios from 'axios';
 
 function ProfileContent() {
 
   const [showDropdown, setShowDropdown] = useState(false);
-  const {profile, loading, error} = useSelector(state => state.profile)
+  const [showUploadDropdown, setShowUploadDropdow] = useState(false);
+  const { profile, loading, error } = useSelector(state => state.profile)
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
   const [societyName, setSocietyName] = useState('')
   const [address, setAddress] = useState('')
+  const [selectedFile, setSelectedFile] = useState('')
   const dispatch = useDispatch()
-  
+  const accessToken = localStorage.getItem('accessToken')
+
   useEffect(() => {
     dispatch(fetchProfile());
   }, [dispatch])
-  
+
   const handleDropdown = () => {
+    setShowUploadDropdow(false)
     setShowDropdown(!showDropdown);
   }
 
   const handleUpdateProfile = () => {
-    dispatch(updateProfile({name, email, phone, address, societyName}))
+    dispatch(updateProfile({ name, email, phone, address, societyName }))
 
     setName('')
     setEmail('')
@@ -32,16 +38,62 @@ function ProfileContent() {
     setSocietyName('')
     setAddress('')
   }
+
+  const handleUploadDropdown = () => {
+    setShowDropdown(false);
+    setShowUploadDropdow(!showUploadDropdown);
+  }
+
+  const handleFileSelect = async (e) => {
+    e.preventDefault()
+    const file = e.target.files[0]
+
+    if (file) {
+      setSelectedFile(file)
+
+      const render = new FileReader()
+      render.readAsDataURL(file)
+    }
+  }
+
+  const uploadImage = async (e) => {
+    e.preventDefault();
+    try {
+      if (!selectedFile) {
+        throw new Error('Select a File');
+      }
+  
+      const formData = new FormData();
+      formData.append('photo', selectedFile);
+  
+      const response = await fetch('/api/v1/users/uploadPhoto', {
+        method: 'PATCH',
+        body: formData,
+        headers: {
+          'Authorization': `Bearer ${accessToken}`
+        },
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error('Error response from server:', errorData);
+        throw new Error('Failed to upload image');
+      }
+    } catch (error) {
+      console.error('Error uploading image:', error);
+    }
+  };
+  
   return (
     <div className="profile-container">
       <div className="profile-main-container">
         <div className="profile-display-section">
           <div className="profile-img-display-container">
             {
-              profile.photo ? 
-              <img src={profile.photo} alt="" />
-              :
-              <img src='https://www.verizon.com/learning/mcgraw-hill' alt="" />
+              profile.photo ?
+                <img src={profile.photo} alt="" />
+                :
+                <img src="fallback-image.jpeg" alt="" />
             }
           </div>
           <div className="profile-info-container">
@@ -62,6 +114,7 @@ function ProfileContent() {
             </div>
             <div className="profile-update-button">
               <button onClick={handleDropdown}>Update</button>
+              <button onClick={handleUploadDropdown}>UploadImage</button>
             </div>
           </div>
         </div>
@@ -70,29 +123,38 @@ function ProfileContent() {
             <div className="profile-update-section">
               <div className="update-name">
                 <span>Name</span>
-                <input type="text" value={name} onChange={(e) => setName(e.target.value)} autoComplete='off'/>
+                <input type="text" value={name} onChange={(e) => setName(e.target.value)} autoComplete='off' />
               </div>
               <div className="update-email">
                 <span>Email</span>
-                <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} autoComplete='off'/>
+                <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} autoComplete='off' />
               </div>
               <div className="update-phone">
                 <span>Phone</span>
-                <input type="number" value={phone} onChange={(e) => setPhone(e.target.value)} autoComplete='off'/>
+                <input type="number" value={phone} onChange={(e) => setPhone(e.target.value)} autoComplete='off' />
               </div>
               <div className="update-society-name">
                 <span>Society Name</span>
-                <input type="text" value={societyName} onChange={(e) => setSocietyName(e.target.value)} autoComplete='off'/>
+                <input type="text" value={societyName} onChange={(e) => setSocietyName(e.target.value)} autoComplete='off' />
               </div>
               <div className="update-address">
                 <span>Address</span>
-                <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} autoComplete='off'/>
+                <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} autoComplete='off' />
               </div>
               <div className="update-submit-button">
                 <button onClick={() => handleUpdateProfile()}>Submit</button>
-                <Toaster/>
+                <Toaster />
               </div>
             </div>
+          )
+        }
+        {
+          showUploadDropdown && (
+            <form onSubmit={uploadImage}>
+              <input type="file" accept='image/*' onChange={handleFileSelect} required />
+              <br /><br />
+              <button type='submit'>Upload Image</button>
+            </form>
           )
         }
       </div>

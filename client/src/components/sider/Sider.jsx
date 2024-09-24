@@ -58,7 +58,7 @@ function Sider() {
   return (
     <div className='sider-container'>
         <div className="profile-img-container">
-            <img src="" alt="" />
+            <img src="fallback-image.jpeg" alt="" />
         </div>
         <div className="view-profile-container">
             <button onClick={handleViewProfile}>View Profile</button>
