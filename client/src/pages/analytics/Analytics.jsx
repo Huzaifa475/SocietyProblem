@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import './index.css'
 import { fetchSocity, fetchTotalEvents, fetchTotalProblems } from '../../redux/analyticsSlice'
 import axios from 'axios'
+import { Stack, Skeleton } from '@mui/material'
 
 function Analytics() {
 
@@ -47,6 +48,71 @@ function Analytics() {
     }
     setUid('')
   }
+
+  if (loading) {
+    return (
+      < div className="analytics-container" >
+        <div className="analytics-main-container">
+          <div className="analytics-top-container">
+            <div className="analytics-pie-container">
+              <span>Problem analytics of society</span>
+            </div>
+            <div className="analytics-right-container">
+              <div className="analytics-total-container">
+                <div className="analytics-total-members">
+                  <span>Total Members</span>
+                </div>
+                <div className="analytics-total-problems">
+                  <span>Total Problems</span>
+                </div>
+                <div className="analytics-total-events">
+                  <span>Total Events</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <Stack className="analytics-bottom-container">
+            <Skeleton className='analytics-display-members-container' style={{backgroundColor: 'silver'}}/>
+            <Skeleton className='analytics-display-members-container' style={{backgroundColor: 'silver'}}/>
+            <Skeleton className='analytics-display-members-container' style={{backgroundColor: 'silver'}}/>
+            <Skeleton className='analytics-display-members-container' style={{backgroundColor: 'silver'}}/>
+            <Skeleton className='analytics-display-members-container' style={{backgroundColor: 'silver'}}/>
+          </Stack>
+        </div>
+      </div >
+    )
+  }
+
+  if(error){
+    return (
+      < div className="analytics-container" >
+        <div className="analytics-main-container">
+          <div className="analytics-top-container">
+            <div className="analytics-pie-container">
+              <span>Problem analytics of society</span>
+            </div>
+            <div className="analytics-right-container">
+              <div className="analytics-total-container">
+                <div className="analytics-total-members">
+                  <span>Total Members</span>
+                </div>
+                <div className="analytics-total-problems">
+                  <span>Total Problems</span>
+                </div>
+                <div className="analytics-total-events">
+                  <span>Total Events</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            Something went wrong
+          </div>
+        </div>
+      </div >
+    )
+  }
+
   return (
     <div className="analytics-container">
       <div className="analytics-main-container">
@@ -88,15 +154,15 @@ function Analytics() {
               </div>
               {
                 showDropdown &&
-                  <>
-                    <div className="analytics-admin-input">
-                      <span>New Admin Id</span>
-                      <input type="text" value={uid} onChange={(e) => setUid(e.target.value)} autoComplete='off'/>
-                    </div>
-                    <div className="analytics-admin-button">
-                      <button onClick={handleChangeAdmin}>Change</button>
-                    </div>
-                  </>
+                <>
+                  <div className="analytics-admin-input">
+                    <span>New Admin Id</span>
+                    <input type="text" value={uid} onChange={(e) => setUid(e.target.value)} autoComplete='off' />
+                  </div>
+                  <div className="analytics-admin-button">
+                    <button onClick={handleChangeAdmin}>Change</button>
+                  </div>
+                </>
               }
             </div>
           </div>

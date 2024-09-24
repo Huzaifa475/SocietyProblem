@@ -9,7 +9,7 @@ import toast from 'react-hot-toast'
 function Sider() {
     const navigate = useNavigate();
     const accessToken = localStorage.getItem('accessToken');
-    const societyName = localStorage.getItem('societyName');
+    const admin = localStorage.getItem('admin');
 
     const handleLogout = async () => {
         try {
@@ -47,17 +47,30 @@ function Sider() {
     const handleLogin = () => {
         navigate('/');
     }
+
+    const handleViewProfile = () => {
+        navigate('/profile');
+    }
+
+    const handleAnalytics = () => {
+        navigate('/analytics');
+    }
   return (
     <div className='sider-container'>
         <div className="profile-img-container">
             <img src="" alt="" />
         </div>
         <div className="view-profile-container">
-            <button>View Profile</button>
+            <button onClick={handleViewProfile}>View Profile</button>
         </div>
-        <div className="admin-information-container">
-            <button>Admin Information</button>
-        </div>
+        {
+            admin === true ?
+            <div className="admin-information-container">
+                <button onClick={handleAnalytics}>Analytics</button>
+            </div>
+            : 
+            <></>
+        }
         {
             accessToken ?
             <>

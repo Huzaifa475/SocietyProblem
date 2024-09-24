@@ -131,8 +131,8 @@ function Problem() {
                                                             <span>Status: </span>
                                                             <select name="" id="" value={updateStatus} onChange={(e) => setUpdateStatus(e.target.value)}>
                                                                 <option value="Incomplete">Incomplete</option>
-                                                                <option value="Pending">Pending</option>
-                                                                <option value="Complete">Complete</option>
+                                                                <option value="Ongoing">Ongoing</option>
+                                                                <option value="Completed">Completed</option>
                                                             </select>
                                                         </div>
                                                         <div className="update-button">

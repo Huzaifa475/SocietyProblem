@@ -12,7 +12,7 @@ const problemSchema = new mongoose.Schema({
     status: {
         type: String,
         required: true,
-        enum: ['ongoing', 'completed', 'incomplete'],
+        enum: ['Ongoing', 'Completed', 'Incomplete'],
         default: 'incomplete'
     },
     category: {

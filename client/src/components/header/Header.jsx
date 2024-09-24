@@ -7,6 +7,7 @@ import './index.css'
 function Header() {
 
     const navigate = useNavigate();
+    const societyName = localStorage.getItem('societyName');
 
     const handleAlert = () => {
         navigate('/alert');
@@ -18,7 +19,7 @@ function Header() {
   return (
     <div className='header'>
         <div className="header-society-name">
-            <span>Name</span>
+            <span>{societyName.toUpperCase()}</span>
         </div>
         <div className='header-icon'>
             <div className='header-alert-icon'>

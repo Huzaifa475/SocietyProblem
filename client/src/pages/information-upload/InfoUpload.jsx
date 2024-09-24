@@ -34,7 +34,7 @@ function InfoUpload() {
                     phone: information.phone,
                     address: information.address,
                     admin: information.admin,
-                    societyName: information.societyName
+                    societyName: information.societyName.toLowerCase()
                 },
                 headers: {
                     'Content-Type': 'application/json',

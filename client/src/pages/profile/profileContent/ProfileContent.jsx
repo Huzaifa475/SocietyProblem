@@ -52,11 +52,6 @@ function ProfileContent() {
             </div>
             <div className="profile-update-button">
               <button onClick={handleDropdown}>Update</button>
-              {
-                profile.admin && (
-                  <button> Change Admin</button>
-                )
-              }
             </div>
           </div>
         </div>

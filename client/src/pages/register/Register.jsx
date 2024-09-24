@@ -23,7 +23,7 @@ function Register() {
                 method: 'post',
                 url: '/api/v1/users/register',
                 data: {
-                    name,
+                    name: name.toLowerCase(),
                     email,
                     password
                 }

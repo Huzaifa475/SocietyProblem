@@ -86,7 +86,6 @@ export const updateUpvote = (upvote, problemId) => async (dispatch) => {
 export const deleteProblem = (problemId) => async (dispatch) => {
     const accessToken = localStorage.getItem('accessToken')
     try {
-        console.log(problemId);
         const res = await axios({
             method: 'delete',
             url: `/api/v1/problem/delete/${problemId}`,

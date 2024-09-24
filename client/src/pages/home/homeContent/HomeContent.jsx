@@ -1,9 +1,23 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCalendarCheck, faComments, faTriangleExclamation } from '@fortawesome/free-solid-svg-icons'
+import { useNavigate } from 'react-router'
 import './index.css'
 
 function HomeContent() {
+    const navigate = useNavigate()
+
+    const handleEventNavigation = () => {
+        navigate('/event')
+    }
+
+    const handleProblemNavigation = () => {
+        navigate('/problem')
+    }
+
+    const handleChatNavigation = () => {
+        navigate('/chat')
+    }
   return (
     <div className='card-container'>
         <div className='card-main-container'>
@@ -17,7 +31,7 @@ function HomeContent() {
                     <span>Date</span>
                 </div>
                 <div className='cards-button'>
-                    <button>Click here</button>
+                    <button onClick={handleEventNavigation}>Click here</button>
                 </div>
             </div>
             <div className="cards-content problem-card">
@@ -30,7 +44,7 @@ function HomeContent() {
                     <span>Upvote</span>
                 </div>
                 <div className='cards-button'>
-                    <button>Click here</button>
+                    <button onClick={handleProblemNavigation}>Click here</button>
                 </div>
             </div>
             <div className="cards-content disscusion-card">
@@ -41,7 +55,7 @@ function HomeContent() {
                     <span>Chat</span>
                 </div>
                 <div className='cards-button'>
-                    <button>Click here</button>
+                    <button onClick={handleChatNavigation}>Click here</button>
                 </div>
             </div>
         </div>

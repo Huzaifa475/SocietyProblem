@@ -59,6 +59,17 @@ io.on('connection', (socket) => {
         }
     });
 
+    socket.on('delete-message', async (societyName) => {
+        try {
+            
+            await Message.deleteMany({societyName: societyName})
+
+        } catch (error) {
+            console.error('Error while deleting message', error);
+            socket.emit('error', 'Message could not delete.');
+        }
+    })
+
     socket.on('disconnect', () => {
         console.log('User disconnected');
     })

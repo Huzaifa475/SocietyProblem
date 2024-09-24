@@ -20,7 +20,7 @@ function Login() {
         method: 'post',
         url: '/api/v1/users/login',
         data: {
-          name,
+          name: name.toLowerCase(),
           password
         }
       })

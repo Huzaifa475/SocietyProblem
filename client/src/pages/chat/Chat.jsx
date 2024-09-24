@@ -4,6 +4,7 @@ import { io } from 'socket.io-client'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import moment from 'moment'
+import {toast, Toaster} from 'react-hot-toast'
 
 function Chat() {
     const [chats, setChats] = useState([])
@@ -11,6 +12,8 @@ function Chat() {
     const [messageData, setMessageData] = useState('')
     const societyName = localStorage.getItem('societyName')
     const userId = localStorage.getItem('userId')
+    const admin = localStorage.getItem('admin')
+    const [error, setError] = useState('')
 
     const lastMessage = useRef(null);
 
@@ -36,6 +39,10 @@ function Chat() {
             setChats((prevChats) => [...prevChats, messageData])
         })
 
+        newSocket.on('error', (error) => {
+            setError(error);
+        })
+
         return () => {
             newSocket.disconnect();
         }
@@ -58,6 +65,18 @@ function Chat() {
         socket.emit('send-message', message);
 
         setMessageData('');
+    }
+
+    const handleClearChat = async() => {
+        socket.emit('delete-message', societyName)
+        toast.success('Message deleted successfully')
+        window.location.reload()
+    }
+
+    const handleKeyDown = (e) => {
+        if(e.key === 'Enter'){
+            handleClick();
+        }
     }
 
     return (
@@ -85,8 +104,15 @@ function Chat() {
                     }
                 </div>
                 <div className="chat-input-container">
-                    <input type="text" placeholder='Write Something...' value={messageData} onChange={(e) => setMessageData(e.target.value)} />
+                    {
+                        admin === true ?
+                        <button className='clear-chat-button' onClick={handleClearChat}>Clear Chats</button>
+                        :
+                        <></>
+                    }
+                    <input type="text" placeholder='Write Something...' value={messageData} onChange={(e) => setMessageData(e.target.value)} onKeyDown={handleKeyDown}/>
                     <button onClick={handleClick}><FontAwesomeIcon icon={faPaperPlane} /></button>
+                    <Toaster/>
                 </div>
             </div>
         </div>

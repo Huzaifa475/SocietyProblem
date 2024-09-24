@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { deleteNotifications, fetchNotifications, setNotifications } from '../../redux/notificationSlice'
 import moment from 'moment'
 import { io } from 'socket.io-client'
+import {Skeleton, Stack} from '@mui/material'
 import './index.css'
 
 function Notification() {
@@ -53,9 +54,18 @@ function Notification() {
                         <span>Notifications</span>
                         <button onClick={handleClearButton}>Clear All</button>
                     </div>
-                    <div className='notification-main-container'>
-                        Loading...
-                    </div>
+                    <Stack className='notification-main-container'>
+                        <Skeleton className='notification-content'/>
+                        <Skeleton className='notification-content'/>
+                        <Skeleton className='notification-content'/>
+                        <Skeleton className='notification-content'/>
+                        <Skeleton className='notification-content'/>
+                        <Skeleton className='notification-content'/>
+                        <Skeleton className='notification-content'/>
+                        <Skeleton className='notification-content'/>
+                        <Skeleton className='notification-content'/>
+                        <Skeleton className='notification-content'/>
+                    </Stack>
                 </div>
             </div>
         )
@@ -70,7 +80,7 @@ function Notification() {
                         <button onClick={handleClearButton}>Clear All</button>
                     </div>
                     <div className='notification-main-container'>
-                        Error
+                        Something went wrong
                     </div>
                 </div>
             </div>
