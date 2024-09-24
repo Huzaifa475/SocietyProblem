@@ -5,15 +5,17 @@ import { io } from 'socket.io-client'
 import './index.css'
 import moment from 'moment';
 import { Skeleton, Stack } from '@mui/material'
+import {toast, Toaster} from 'react-hot-toast'
+import axios from 'axios'
 
 function Alert() {
 
     const [socket, setSocket] = useState(null);
     const dispatch = useDispatch();
     const { alerts, loading, error } = useSelector(state => state.alert)
-    const admin = localStorage.getItem('admin')
+    const admin = JSON.parse(localStorage.getItem('admin'))
+    const accessToken = localStorage.getItem('accessToken')
     const [content, setContent] = useState('')
-
 
     useEffect(() => {
         dispatch(fetchAlerts())
@@ -85,10 +87,34 @@ function Alert() {
         )
     }
 
-    const handleCreateAlert = () => {
+    const handleCreateAlert = async() => {
+        try {
+            const res = await axios({
+                method: 'post',
+                url: '/api/v1/alert/create',
+                data: {
+                    content
+                },
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${accessToken}`
+                }
+            })
+            toast.success(res?.data?.message);
+        } catch (error) {
+            if (error.response) {
+                if (error.response?.data?.message)
+                  toast.error(error.response?.data?.message);
+                else
+                  toast.error(error.request?.statusText);
+              }
+              else if (error.request) {
+                toast.error(error.request?.statusText);
+              }
+        }
 
+        setContent('')
     }
-    console.log(admin);
     
     return (
         <div className='alert-page'>
@@ -109,6 +135,7 @@ function Alert() {
                         </div>
                         <div className="alert-create-button">
                             <button onClick={handleCreateAlert}>Create</button>
+                            <Toaster/>
                         </div>
                     </div>
                     :
@@ -125,10 +152,10 @@ function Alert() {
                                     </div>
                                 )
                             })
-                            :
-                            <div>
-                                No alert fetch
-                            </div>
+                        :
+                        <div>
+                            No alert fetch
+                        </div>
                     }
                 </div>
             </div>

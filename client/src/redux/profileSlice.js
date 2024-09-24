@@ -1,5 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit'
 import axios from 'axios'
+import toast from 'react-hot-toast'
 
 axios.defaults.withCredentials = true
 export const fetchProfile = () => async (dispatch) => {
@@ -16,8 +17,7 @@ export const fetchProfile = () => async (dispatch) => {
         })
         dispatch(setProfile(res.data.data))
     } catch (error) {
-        console.log(error);
-        dispatch(setError())
+        dispatch(setError(error))
     }
 }
 
@@ -26,7 +26,7 @@ export const updateProfile = ({name, email, phone, address, societyName}) => asy
     try {
         dispatch(setLoading())
         const updateFields = {}
-        if(name) updateFields.name = name
+        if(name) updateFields.name = name.toLowerCase()
         if(email) updateFields.email = email
         if(phone) updateFields.phone = phone
         if(address) updateFields.address = address
@@ -43,9 +43,9 @@ export const updateProfile = ({name, email, phone, address, societyName}) => asy
             }
         })
         dispatch(fetchProfile())
+        toast.success(res.data.message)
     } catch (error) {
-        console.log(error);
-        dispatch(setError())
+        toast.error(error.response.data.message)
     }
 }
 

@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import {toast} from 'react-hot-toast'
 
 axios.defaults.withCredentials = true;
 export const fetchProblems = () => async (dispatch) => {
@@ -15,13 +16,15 @@ export const fetchProblems = () => async (dispatch) => {
         })
         dispatch(setProblems(res.data.data));
     } catch (error) {
-        console.log(error);
+        dispatch(setError(error))
     }
 }
 
 export const createProblem = ({content, category}) => async (dispatch) => {
     const accessToken = localStorage.getItem('accessToken')
     try {
+        console.log(category);
+        
         const res = await axios({
             method: 'post',
             url: '/api/v1/problem/create',
@@ -34,9 +37,10 @@ export const createProblem = ({content, category}) => async (dispatch) => {
                 'Authorization': `Bearer ${accessToken}`
             }
         })
-        dispatch(fetchProblems());
+        dispatch(fetchProblems()); 
+        toast.success(res.data.message)
     } catch (error) {
-        console.log(error);
+        toast.error(error.response.data.message)
     }
 }
 
@@ -58,8 +62,9 @@ export const updateProblem = ({content, category, status} ,problemId) => async (
             }
         })
         dispatch(fetchProblems())
+        toast.success(res.data.message)
     } catch (error) {
-        console.log(error);
+        toast.error(error.response.data.message)
     }
 }
 
@@ -78,8 +83,9 @@ export const updateUpvote = (upvote, problemId) => async (dispatch) => {
             }
         })
         dispatch(fetchProblems())
+        toast.success(res.data.message)
     } catch (error) {
-        console.log(error);
+        toast.error(error.response.data.message)
     }
 }
 
@@ -95,8 +101,9 @@ export const deleteProblem = (problemId) => async (dispatch) => {
             }
         })
         dispatch(fetchProblems())
+        toast.success(res.data.message)
     } catch (error) {
-        console.log(error);
+        toast.error(error.response.data.message)
     }
 }
 

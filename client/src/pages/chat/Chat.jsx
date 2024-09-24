@@ -12,7 +12,7 @@ function Chat() {
     const [messageData, setMessageData] = useState('')
     const societyName = localStorage.getItem('societyName')
     const userId = localStorage.getItem('userId')
-    const admin = localStorage.getItem('admin')
+    const admin = JSON.parse(localStorage.getItem('admin'))
     const [error, setError] = useState('')
 
     const lastMessage = useRef(null);

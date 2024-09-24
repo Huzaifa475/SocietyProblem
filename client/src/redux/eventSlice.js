@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import {toast} from 'react-hot-toast'
 
 axios.defaults.withCredentials = true
 export const fetchEvents = () => async(disaptch) => {
@@ -15,7 +16,6 @@ export const fetchEvents = () => async(disaptch) => {
         })
         disaptch(setEvents(res.data.data))
     } catch (error) {
-        console.log(error);
         disaptch(setError(error));
     }
 }
@@ -40,9 +40,9 @@ export const createEvent = ({title, discription, location, onDate}) => async(dis
             }
         })
         disaptch(fetchEvents())
+        toast.success(res.data.message)
     } catch (error) {
-        console.log(error);
-        disaptch(setError(error));
+        toast.error(error.response.data.message)
     }
 }
 
@@ -64,9 +64,9 @@ export const updateEvent = ({updateTitle, updateDiscription, updateLocation, upd
             }
         })
         disaptch(fetchEvents())
+        toast.success(res.data.message)
     } catch (error) {
-        console.log(error);
-        disaptch(setError(error));
+        toast.error(error.response.data.message)
     }
 }
 
@@ -82,8 +82,9 @@ export const deleteEvent = (eventId) => async (dispatch) => {
             }
         })
         dispatch(fetchEvents())
+        toast.success(res.data.message)
     } catch (error) {
-        console.log(error);
+        toast.error(error.response.data.message)
     }
 }
 

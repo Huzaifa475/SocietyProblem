@@ -5,6 +5,7 @@ import moment from 'moment'
 import { io } from 'socket.io-client'
 import {Skeleton, Stack} from '@mui/material'
 import './index.css'
+import { Toaster } from 'react-hot-toast'
 
 function Notification() {
     const [socket, setSocket] = useState(null);
@@ -93,6 +94,7 @@ function Notification() {
                 <div className='notification-title'>
                     <span>Notifications</span>
                     <button onClick={handleClearButton}>Clear All</button>
+                    <Toaster/>
                 </div>
                 <div className='notification-main-container'>
                     {notifications && notifications.length > 0 ? (

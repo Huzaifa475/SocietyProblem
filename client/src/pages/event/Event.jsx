@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import './index.css'
 import moment from 'moment'
 import { createEvent, deleteEvent, fetchEvents, updateEvent } from '../../redux/eventSlice.js'
+import {Toaster} from 'react-hot-toast'
 
 const EventCalendar = lazy(() => import('./calendar/EventCalendar.jsx'));
 
@@ -52,6 +53,8 @@ function Event() {
     setUpdateDiscription('')
     setLocation('')
     setUpdateOnDate('')
+
+    setShowDropdown(!showDropdown)
   }
   return (
     <div className="event-container">
@@ -66,7 +69,7 @@ function Event() {
               <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} autoComplete='off' />
             </div>
             <div className="event-create-discription">
-              <span>Discription</span>
+              <span>Description</span>
               <input type="text" value={discription} onChange={(e) => setDiscription(e.target.value)} autoComplete='off' />
             </div>
             <div className="event-create-location">
@@ -109,6 +112,7 @@ function Event() {
                       </div>
                       <div className="event-delete-buttonm">
                         <button onClick={() => dispatch(deleteEvent(event?._id))}>Delete</button>
+                        <Toaster/>
                       </div>
                     </div>
                     {

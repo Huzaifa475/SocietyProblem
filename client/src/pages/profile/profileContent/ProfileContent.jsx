@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch , useSelector} from 'react-redux';
 import './index.css'
 import { fetchProfile, updateProfile } from '../../../redux/profileSlice'
+import { Toaster } from 'react-hot-toast';
 
 function ProfileContent() {
 
@@ -22,6 +23,15 @@ function ProfileContent() {
     setShowDropdown(!showDropdown);
   }
 
+  const handleUpdateProfile = () => {
+    dispatch(updateProfile({name, email, phone, address, societyName}))
+
+    setName('')
+    setEmail('')
+    setPhone('')
+    setSocietyName('')
+    setAddress('')
+  }
   return (
     <div className="profile-container">
       <div className="profile-main-container">
@@ -79,7 +89,8 @@ function ProfileContent() {
                 <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} autoComplete='off'/>
               </div>
               <div className="update-submit-button">
-                <button onClick={() => dispatch(updateProfile({name, email, phone, societyName, address}))}>Submit</button>
+                <button onClick={() => handleUpdateProfile()}>Submit</button>
+                <Toaster/>
               </div>
             </div>
           )

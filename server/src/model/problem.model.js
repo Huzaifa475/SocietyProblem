@@ -13,7 +13,7 @@ const problemSchema = new mongoose.Schema({
         type: String,
         required: true,
         enum: ['Ongoing', 'Completed', 'Incomplete'],
-        default: 'incomplete'
+        default: 'Incomplete'
     },
     category: {
         type: String,

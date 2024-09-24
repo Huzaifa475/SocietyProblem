@@ -9,7 +9,7 @@ import toast from 'react-hot-toast'
 function Sider() {
     const navigate = useNavigate();
     const accessToken = localStorage.getItem('accessToken');
-    const admin = localStorage.getItem('admin');
+    const admin = JSON.parse(localStorage.getItem('admin'))
 
     const handleLogout = async () => {
         try {
@@ -37,10 +37,10 @@ function Sider() {
             }
         }
         finally{
-            localStorage.removeItem('accessToken');
-            localStorage.removeItem('societyName');
-            localStorage.removeItem('userId');
             localStorage.removeItem('admin');
+            localStorage.removeItem('userId');
+            localStorage.removeItem('societyName');
+            localStorage.removeItem('accessToken');
         }
     }
 

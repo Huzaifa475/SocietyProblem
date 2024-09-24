@@ -1,5 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit"
 import axios from 'axios'
+import {toast} from 'react-hot-toast'
 
 axios.defaults.withCredentials = true
 export const fetchAlerts = () => async (dispatch) => {
@@ -16,7 +17,7 @@ export const fetchAlerts = () => async (dispatch) => {
         })
         dispatch(setAlerts(res.data?.data))
     } catch (error) {
-        console.log(error);
+        dispatch(setError(error))
     }
 }
 
@@ -33,8 +34,9 @@ export const deleteAlerts = () => async (dispatch) => {
             }
         })
         dispatch(resetAlerts())
+        toast.success(res.data?.message)
     } catch (error) {
-        console.log(error);
+        toast.error(error.response.data.message)
     }
 }
 

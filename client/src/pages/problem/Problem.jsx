@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import './index.css'
 import { createProblem, deleteProblem, fetchProblems, updateProblem, updateUpvote } from '../../redux/problemSlice'
 import moment from 'moment'
+import { Toaster } from 'react-hot-toast'
 
 function Problem() {
 
@@ -24,6 +25,8 @@ function Problem() {
     
     const handleCreate = () => {
         dispatch(createProblem({ content, category }));
+        setContent('')
+        setCategory('')
     }
     
     const handleShowDropdown = (problem) => {
@@ -34,6 +37,13 @@ function Problem() {
             setSelectedProblem(problem._id);
             setShowDropdown(true);
         }
+    }
+
+    const handleUpdate = (problemId) => {
+        dispatch(updateProblem({ content: updateContent, category: updateCategory, status: updateStatus }, problemId))
+        updateContent('')
+        updateCategory('')
+        updateStatus('')
     }
     
     return (
@@ -136,7 +146,7 @@ function Problem() {
                                                             </select>
                                                         </div>
                                                         <div className="update-button">
-                                                            <button onClick={() => dispatch(updateProblem({ content: updateContent, category: updateCategory, status: updateStatus }, problem._id))}>Update</button>
+                                                            <button onClick={() => handleUpdate(problem._id)}>Update</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -152,6 +162,7 @@ function Problem() {
                     </div>
                 </div>
             </div >
+            <Toaster/>
         </div >
     )
 }

@@ -14,12 +14,9 @@ export const fetchSocity = () => async(dispatch) => {
                 'Authorization': `Bearer ${accessToken}`
             }
         })
-        dispatch(setSocietyMembers(res.data.data))
-        console.log(res.data.data);
-        
+        dispatch(setSocietyMembers(res.data.data)) 
     } catch (error) {
-        console.log(error);
-        setError(error)
+        dispatch(setError(error))
     }
 }
 
@@ -37,8 +34,7 @@ export const fetchTotalProblems = () => async(dispatch) => {
         })
         dispatch(setTotalProblems(res.data.data))
     } catch (error) {
-        console.log(error);
-        setError(error)
+        dispatch(setError(error))
     }
 }
 
@@ -56,8 +52,7 @@ export const fetchTotalEvents = () => async(dispatch) => {
         })
         dispatch(setTotalEvents(res.data.data))
     } catch (error) {
-        console.log(error);
-        setError(error)
+        dispatch(setError(error))
     }
 }
 
