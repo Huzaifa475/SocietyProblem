@@ -324,4 +324,21 @@ const changeAdmin = asyncHandler(async(req, res) => {
     .json(new apiResponse(200, {currentAdmin, newAdmin, society},"Admin changed successfully"));
 })
 
-export {registerUser, loginUser, logoutUser, informationUser, updateUser, getCurrentUser, uploadPhotoUser, changeAdmin}
+const getPhoto = asyncHandler(async(req, res) => {
+
+    const user = await User.findById(
+        req.user?._id
+    )
+
+    if(!user){
+        throw new apiError("User does not exists")
+    }
+
+    const photoUrl = user?.photo
+
+    return res
+    .status(200)
+    .json(new apiResponse(200, photoUrl, "Photo fetch successfully"))
+})
+
+export {registerUser, loginUser, logoutUser, informationUser, updateUser, getCurrentUser, uploadPhotoUser, changeAdmin, getPhoto}

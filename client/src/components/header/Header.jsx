@@ -9,6 +9,10 @@ function Header() {
     const navigate = useNavigate();
     const societyName = localStorage.getItem('societyName');
 
+    if(societyName){
+        societyName.toUpperCase()
+    }
+
     const handleAlert = () => {
         navigate('/alert');
     }
@@ -19,7 +23,7 @@ function Header() {
   return (
     <div className='header'>
         <div className="header-society-name">
-            <span>{societyName.toUpperCase()}</span>
+            <span>{societyName}</span>
         </div>
         <div className='header-icon'>
             <div className='header-alert-icon'>

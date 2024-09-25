@@ -146,3 +146,19 @@ html body{
 .problem-icon{
     color: white;
 }
+
+@media screen and (max-width: 550px) {
+    .card-container{
+        width: 70vw;
+    }
+    .card-main-container{
+        width: 90%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .cards-content{
+        width: 100%;
+        height: 30%;
+    }
+}

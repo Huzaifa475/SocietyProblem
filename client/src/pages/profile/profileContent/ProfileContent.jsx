@@ -62,10 +62,10 @@ function ProfileContent() {
       if (!selectedFile) {
         throw new Error('Select a File');
       }
-  
+
       const formData = new FormData();
       formData.append('photo', selectedFile);
-  
+
       const response = await fetch('/api/v1/users/uploadPhoto', {
         method: 'PATCH',
         body: formData,
@@ -83,7 +83,7 @@ function ProfileContent() {
       console.error('Error uploading image:', error);
     }
   };
-  
+
   return (
     <div className="profile-container">
       <div className="profile-main-container">
@@ -93,7 +93,7 @@ function ProfileContent() {
               profile.photo ?
                 <img src={profile.photo} alt="" />
                 :
-                <img src="fallback-image.jpeg" alt="" />
+                <img src="https://picsum.photos/400/300" alt="" />
             }
           </div>
           <div className="profile-info-container">
@@ -150,11 +150,13 @@ function ProfileContent() {
         }
         {
           showUploadDropdown && (
-            <form onSubmit={uploadImage}>
-              <input type="file" accept='image/*' onChange={handleFileSelect} required />
-              <br /><br />
-              <button type='submit'>Upload Image</button>
-            </form>
+            <div className="img-upload-container">
+              <form onSubmit={uploadImage}>
+                <input type="file" accept='image/*' onChange={handleFileSelect} required />
+                <br /><br />
+                <button type='submit'>Upload Image</button>
+              </form>
+            </div>
           )
         }
       </div>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {replace, useNavigate} from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './index.css'
@@ -10,6 +10,7 @@ function Sider() {
     const navigate = useNavigate();
     const accessToken = localStorage.getItem('accessToken');
     const admin = JSON.parse(localStorage.getItem('admin'))
+    const [photoUrl, setPhotoUrl] = useState('');
 
     const handleLogout = async () => {
         try {
@@ -55,10 +56,42 @@ function Sider() {
     const handleAnalytics = () => {
         navigate('/analytics');
     }
+
+    const handleHome = () => {
+        navigate('/home');
+    }
+
+    const renderPhoto = async () => {
+        try {
+            const res = await axios({
+                method: 'get',
+                url: '/api/v1/users/getPhoto',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${accessToken}`
+                }
+            })
+            setPhotoUrl(res.data.data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    useEffect(() => {
+        renderPhoto()
+    }, [])
+
   return (
     <div className='sider-container'>
         <div className="profile-img-container">
-            <img src="fallback-image.jpeg" alt="" />
+            {
+                photoUrl ?
+                <img src={photoUrl} alt="" loading='lazy'/>
+                :
+                <img src="https://picsum.photos/400/300" alt="" loading='lazy'/>
+            }
+        </div>
+        <div className="view-profile-container">
+            <button onClick={handleHome}>Home</button>
         </div>
         <div className="view-profile-container">
             <button onClick={handleViewProfile}>View Profile</button>

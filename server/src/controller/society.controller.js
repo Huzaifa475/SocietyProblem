@@ -32,7 +32,7 @@ const getSocietyEvents = asyncHandler(async(req, res) => {
         {
             societyName: req.user?.societyName
         }
-    )
+    ).sort({onDate: -1})
 
     return res
     .status(200)

@@ -106,7 +106,7 @@ html body{
     padding: 1%;
     display: flex;
     flex-direction: column;
-    gap: 0.1rem;
+    gap: 0.3rem;
 }
 
 .update-name, .update-email, .update-phone, .update-address, .update-society-name, .update-submit-button{
@@ -120,7 +120,7 @@ html body{
 }
 
 .update-name input{
-    width: 30%;
+    width: 50%;
     border-radius: 0.3rem;
     border: 1px solid black;
 }
@@ -131,7 +131,7 @@ html body{
 }
 
 .update-email input{
-    width: 30%;
+    width: 50%;
     border-radius: 0.3rem;
     border: 1px solid black;
 }
@@ -142,7 +142,7 @@ html body{
 }
 
 .update-phone input{
-    width: 30%;
+    width: 50%;
     border-radius: 0.3rem;
     border: 1px solid black;
 }
@@ -153,7 +153,7 @@ html body{
 }
 
 .update-address input{
-    width: 30%;
+    width: 50%;
     border-radius: 0.3rem;
     border: 1px solid black;
 }
@@ -164,7 +164,7 @@ html body{
 }
 
 .update-society-name input{
-    width: 30%;
+    width: 50%;
     border-radius: 0.3rem;
     border: 1px solid black;
 }
@@ -185,4 +185,33 @@ html body{
     background-color: black;
     border: none;
     border-radius: 0.3rem;
+}
+
+.img-upload-container{
+    padding-top: 0.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.img-upload-container button{
+    width: 20%;
+    height: 2.2rem;
+    color: white;
+    background-color: black;
+    border: none;
+    border-radius: 0.3rem;
+}
+
+@media screen and (max-width: 900px) {
+    .profile-img-display-container img{
+        width: 70%;
+        height: 60%;
+        border-radius: 0.5rem;
+    }
+    .profile-update-section input{
+        width: 70%;
+    }
+    .update-submit-button button{
+        width: 30%;
+    }
 }

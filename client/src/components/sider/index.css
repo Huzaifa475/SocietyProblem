@@ -38,8 +38,9 @@ html body{
 .profile-img-container img{
     width: 50%;
     height: 95%;
+    object-fit: cover;
     border: 1px solid black;
-    border-radius: 50%;
+    border-radius: 0.4rem;
 }
 
 .view-profile-container{
@@ -106,4 +107,22 @@ html body{
 
 button:hover{
     cursor: pointer;
+}
+
+@media screen and (max-width: 820px) {
+    .logout-button-container{
+        width: 100%;
+    }
+    .profile-img-container img{
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .sider-container{
+        width: 30vw;
+    }
+    .profile-img-container{
+        width: 30vw;
+    }
 }
