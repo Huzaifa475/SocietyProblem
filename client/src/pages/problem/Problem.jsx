@@ -11,10 +11,10 @@ function Problem() {
 
     const [showDropdown, setShowDropdown] = useState(false);
     const [content, setContent] = useState('');
-    const [category, setCategory] = useState('');
+    const [category, setCategory] = useState('Infrastructure Issues');
     const [updateContent, setUpdateContent] = useState('');
-    const [updateCategory, setUpdateCategory] = useState('');
-    const [updateStatus, setUpdateStatus] = useState('');
+    const [updateCategory, setUpdateCategory] = useState('Infrastructure Issues');
+    const [updateStatus, setUpdateStatus] = useState('Incomplete');
     const { problems, loading, error } = useSelector(state => state.problem)
     const [selectedProblem, setSelectedProblem] = useState(null)
     const dispatch = useDispatch();
@@ -26,7 +26,7 @@ function Problem() {
     const handleCreate = () => {
         dispatch(createProblem({ content, category }));
         setContent('')
-        setCategory('')
+        setCategory('Infrastructure Issues')
     }
     
     const handleShowDropdown = (problem) => {
@@ -42,8 +42,9 @@ function Problem() {
     const handleUpdate = (problemId) => {
         dispatch(updateProblem({ content: updateContent, category: updateCategory, status: updateStatus }, problemId))
         updateContent('')
-        updateCategory('')
-        updateStatus('')
+        updateCategory('Infrastructure Issues')
+        updateStatus('Incomplete')
+        setShowDropdown(false)
     }
     
     return (

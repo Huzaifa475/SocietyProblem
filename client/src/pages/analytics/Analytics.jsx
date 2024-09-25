@@ -6,6 +6,7 @@ import { fetchSocity, fetchTotalEvents, fetchTotalProblems } from '../../redux/a
 import axios from 'axios'
 import { Stack, Skeleton } from '@mui/material'
 import useResponsiveSize from '../../hook/useResponsiveSize/useResponsiveSize.jsx'
+import toast, { Toaster } from 'react-hot-toast'
 
 function Analytics() {
 
@@ -45,6 +46,9 @@ function Analytics() {
           'Authorization': `Bearer ${accessToken}`
         }
       })
+      const admin = res.data.data.currentAdmin.admin
+      localStorage.setItem('admin', admin);
+      toast.success(res.data.message);
     } catch (error) {
       console.error(error);
     }
@@ -190,6 +194,7 @@ function Analytics() {
           }
         </div>
       </div>
+      <Toaster/>
     </div>
   )
 }

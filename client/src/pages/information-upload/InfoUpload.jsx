@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import {toast, Toaster} from 'react-hot-toast'
-import {useNavigate} from 'react-router-dom'
+import { toast, Toaster } from 'react-hot-toast'
+import { useNavigate } from 'react-router-dom'
 import './index.css'
 
 function InfoUpload() {
 
     const [phone, setPhone] = useState('');
     const [societyName, setSocietyName] = useState('');
-    const [admin, setAdmin] = useState('');
+    const [admin, setAdmin] = useState('yes');
     const [address, setAddress] = useState('');
     const navigate = useNavigate();
     const accessToken = localStorage.getItem('accessToken');
@@ -16,15 +16,12 @@ function InfoUpload() {
     const handleSubmit = async () => {
         let information = {}
 
-        if(phone.length !== 10){
+        if (phone.length !== 10) {
             return toast.error("Invalid phone number");
         }
         information.phone = parseInt(phone)
         information.societyName = societyName.toLowerCase();
-        if(admin === "yes")
-            information.admin = true
-        else
-            information.admin = false
+        information.admin = admin === 'yes';
         information.address = address
         try {
             const res = await axios({
@@ -40,18 +37,24 @@ function InfoUpload() {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${accessToken}`
                 }
-            }) 
+            })
             toast.success(res?.data?.message);
+            const societyName = res.data?.data?.user?.societyName;
+            const userId = res.data?.data?.user?._id;
+            const isAdmin = res.data?.data?.user?.admin;
+            localStorage.setItem('societyName', societyName);
+            localStorage.setItem('userId', userId);
+            localStorage.setItem('admin', isAdmin);
             setTimeout(() => {
-                navigate('/home', {replace: true})
+                navigate('/home', { replace: true })
             }, 500);
         } catch (error) {
             if (error.response) {
                 if (error.response?.data?.message)
-                  toast.error(error.response?.data?.message);
+                    toast.error(error.response?.data?.message);
                 else
-                  toast.error(error.request?.statusText);
-              }
+                    toast.error(error.request?.statusText);
+            }
             else if (error.request) {
                 toast.error(error.request?.statusText);
             }
@@ -60,18 +63,18 @@ function InfoUpload() {
         setPhone('');
         setSocietyName('');
         setAddress('');
-        setAdmin('');
+        setAdmin('yes');
     }
     return (
         <div className='info-container'>
             <div className='info-main-container'>
                 <div className="phone-container default-container">
                     <span>Phone Number</span>
-                    <input type="number" value={phone} onChange={(e) => setPhone(e.target.value)} autoComplete='off'/>
+                    <input type="number" value={phone} onChange={(e) => setPhone(e.target.value)} autoComplete='off' />
                 </div>
                 <div className="society-name-container default-container">
                     <span>Society Name</span>
-                    <input type="text" value={societyName} onChange={(e) => setSocietyName(e.target.value)} autoComplete='off'/>
+                    <input type="text" value={societyName} onChange={(e) => setSocietyName(e.target.value)} autoComplete='off' />
                 </div>
                 <div className="admin-container default-container">
                     <span>Are you Admin?</span>
@@ -82,11 +85,11 @@ function InfoUpload() {
                 </div>
                 <div className="address-container default-container">
                     <span>Address</span>
-                    <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} autoComplete='off'/>
+                    <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} autoComplete='off' />
                 </div>
                 <div className="submit-button default-container">
                     <button onClick={handleSubmit}>Submit</button>
-                    <Toaster/>
+                    <Toaster />
                 </div>
             </div>
         </div>

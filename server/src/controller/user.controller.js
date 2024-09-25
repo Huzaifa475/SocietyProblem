@@ -129,11 +129,11 @@ const informationUser = asyncHandler(async(req, res) => {
 
     let society = await Society.findOne({$or: [{name: societyName}]});
 
-    if(society?.admin && admin){
+    if(society?.admin && admin === true){
         throw new apiError(402, "Society already have admin")
     }
 
-    if(admin && !society){
+    if(admin === true && !society){
         society = await Society.create({
             name: societyName,
             admin: req.user?._id,
@@ -141,14 +141,13 @@ const informationUser = asyncHandler(async(req, res) => {
         })
     }
 
-    if(society){
-        if(!society.members.includes(req.user?._id)){
+    if (society) {
+        if (!society.members.includes(req.user?._id)) {
             society.members.push(req.user?._id);
-            await society.save({validateBeforeSave: false});
+            await society.save({ validateBeforeSave: false });
         }
-    }
-    else{
-        throw new apiError(400, "Society does not exists or member already exists")
+    } else if (!admin) {
+        throw new apiError(400, "Society does not exist, and only admins can create a new society");
     }
 
     const user = await User.findByIdAndUpdate(
@@ -185,13 +184,6 @@ const updateUser = asyncHandler(async(req, res) => {
 
     if(societyName && !req.user?.admin) {
         
-        await Society.findOneAndUpdate(
-            {$or: [{name: req.user?.societyName}]},
-            {
-                $pull: {members: req.user?._id}
-            }
-        )
-
         const society = await Society.findOneAndUpdate(
             {$or: [{name: societyName}]},
             {
@@ -202,6 +194,13 @@ const updateUser = asyncHandler(async(req, res) => {
         if(!society){
             throw new apiError(404, "Society does not exists")
         }
+
+        await Society.findOneAndUpdate(
+            {$or: [{name: req.user?.societyName}]},
+            {
+                $pull: {members: req.user?._id}
+            }
+        )
         
         updateFields.societyName = societyName
     }

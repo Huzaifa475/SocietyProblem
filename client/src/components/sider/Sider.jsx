@@ -9,7 +9,7 @@ import toast from 'react-hot-toast'
 function Sider() {
     const navigate = useNavigate();
     const accessToken = localStorage.getItem('accessToken');
-    const admin = JSON.parse(localStorage.getItem('admin'))
+    const admin = JSON.parse(localStorage.getItem('admin'));
     const [photoUrl, setPhotoUrl] = useState('');
 
     const handleLogout = async () => {

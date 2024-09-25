@@ -119,7 +119,6 @@ function Event() {
                       </div>
                       <div className="event-delete-buttonm">
                         <button onClick={() => dispatch(deleteEvent(event?._id))}>Delete</button>
-                        <Toaster />
                       </div>
                     </div>
                     {
@@ -160,6 +159,7 @@ function Event() {
           </div>
         </div>
       </div>
+      <Toaster />
     </div>
   )
 }

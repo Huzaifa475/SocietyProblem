@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import './index.css'
 import { fetchProfile, updateProfile } from '../../../redux/profileSlice'
-import { Toaster } from 'react-hot-toast';
+import { toast, Toaster } from 'react-hot-toast';
 
 function ProfileContent() {
 
@@ -74,9 +74,9 @@ function ProfileContent() {
 
       if (!response.ok) {
         const errorData = await response.json();
-        console.error('Error response from server:', errorData);
         throw new Error('Failed to upload image');
       }
+      toast.success(response.statusText)
     } catch (error) {
       console.error('Error uploading image:', error);
     }
@@ -141,7 +141,6 @@ function ProfileContent() {
               </div>
               <div className="update-submit-button">
                 <button onClick={() => handleUpdateProfile()}>Submit</button>
-                <Toaster />
               </div>
             </div>
           )
@@ -158,6 +157,7 @@ function ProfileContent() {
           )
         }
       </div>
+      <Toaster />
     </div>
   )
 }

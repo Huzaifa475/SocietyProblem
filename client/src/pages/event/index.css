@@ -284,6 +284,12 @@ html body {
     .event-display-section{
         width: 75%;
     }
+    .event-calendar-display{
+        height: 50%;
+    }
+    .event-create-section{
+        height: 50%;
+    }
 }
 
 @media screen and (max-width: 1265px) {
