@@ -95,7 +95,7 @@ function Chat() {
                                         key={chat._id}
                                         ref={isLastMessage ? lastMessage : null}>
                                         <span className='chat-content'>{chat.content}</span>
-                                        <span className='chat-time'>{moment(chat.createdAt).format('LLL')}</span>
+                                        <span className='chat-time'>{moment(chat.createdAt).format('LL')}</span>
                                     </div>
                                 )
                             }))

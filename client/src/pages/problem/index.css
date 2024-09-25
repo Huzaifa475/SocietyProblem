@@ -102,7 +102,7 @@ html body{
 .problem-create-category select{
     width: 90%;
     min-height: 20%;
-    max-height: 30%;
+    /* max-height: 30%; */
     border-radius: 0.2rem;
     border: 1px solid black;
     overflow-y: scroll;
@@ -346,7 +346,7 @@ html body{
     border: none;
 }
 
-@media screen and (max-width: 775px) {
+@media screen and (max-width: 800px) {
     .problem-create-section{
         width: 35%;
     }
@@ -358,9 +358,37 @@ html body{
     }   
 }
 
-@media screen and (max-width: 580px){
+@media screen and (max-width: 600px){
+    .problem-main-container{
+        flex-direction: column;
+    }
+    .problem-create-section{
+        width: 100%;
+        height: 40%;
+        border-right: none;
+        gap: 1rem;
+    }
+    .problem-display-section{
+        width: 100%;
+        height: 60%;
+    }
+    .problem-create-inputs{
+        gap: 0.4rem;
+    }
+    .problem-create-content{
+        height: 40%;
+    }
+    .problem-create-category{
+        height: 40%;
+    }
+    .problem-create-category select{
+        height: 90%;
+    }
+    .problem-create-button{
+        height: 20%;
+    }
     .problem-create-button button{
-        width: 50%;
+        height: 100%;
     }
 }
 

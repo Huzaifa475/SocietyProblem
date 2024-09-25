@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import './index.css'
 import moment from 'moment'
 import { createEvent, deleteEvent, fetchEvents, updateEvent } from '../../redux/eventSlice.js'
-import {Toaster} from 'react-hot-toast'
+import { Toaster } from 'react-hot-toast'
+import useQuery from '../../hook/useQuery/useQuery.jsx'
 
 const EventCalendar = lazy(() => import('./calendar/EventCalendar.jsx'));
 
@@ -21,6 +22,7 @@ function Event() {
   const [updateDiscription, setUpdateDiscription] = useState('')
   const [updateLocation, setUpdateLocation] = useState('')
   const [updateOnDate, setUpdateOnDate] = useState('')
+  const isLargeScreen = useQuery('(min-width: 640px)');
 
   useEffect(() => {
     dispatch(fetchEvents())
@@ -60,9 +62,14 @@ function Event() {
     <div className="event-container">
       <div className="event-main-container">
         <div className="event-left-container">
-          <Suspense fallback={<div>Loading Calendar...</div>}>
-            <EventCalendar events={events} />
-          </Suspense>
+          {
+            isLargeScreen &&
+            <div className="event-calendar-display">
+              <Suspense fallback={<div>Loading Calendar...</div>}>
+                <EventCalendar events={events} />
+              </Suspense>
+            </div>
+          }
           <div className="event-bottom-container">
             <div className="event-create-title">
               <span>Title</span>
@@ -112,7 +119,7 @@ function Event() {
                       </div>
                       <div className="event-delete-buttonm">
                         <button onClick={() => dispatch(deleteEvent(event?._id))}>Delete</button>
-                        <Toaster/>
+                        <Toaster />
                       </div>
                     </div>
                     {

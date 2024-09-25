@@ -73,7 +73,7 @@ html body{
 }
 
 .chat-content-container-sender{
-    width: 20%;
+    width: 40%;
     height: auto;
     padding: 1%;
     border-bottom-left-radius: 0.5rem;
@@ -87,7 +87,7 @@ html body{
 }
 
 .chat-content-container-receiver{
-    width: 20%;
+    width: 40%;
     height: auto;
     padding: 1%;
     border-top-left-radius: 0.5rem;
@@ -149,4 +149,27 @@ html body{
 .clear-chat-button:hover{
     color: black;
     font-weight: 700 !important;
+}
+
+@media screen and (max-width: 850px) {
+    .chat-input-container{
+        gap: 2%;
+    }
+    .chat-input-container button{
+        width: 8%;
+        height: 80%;
+    }
+    .chat-clear-button{
+        width: 20%;
+        height: 100%;
+    }
+}
+
+@media screen and (max-width: 426px) {
+    .chat-input-container{
+        gap: 5%;
+    }
+    .chat-input-container button{
+        width: 10%;
+    }
 }

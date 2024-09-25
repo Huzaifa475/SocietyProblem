@@ -125,7 +125,7 @@ html body {
     width: 100%;
     height: 90%;
     padding: 1%;
-    overflow-y: auto;
+    overflow-y: scroll;
     display: flex;
     flex-direction: column;
     gap: 1%;
@@ -273,6 +273,69 @@ html body {
 
 @media screen and (max-width: 380px){
     .event-create-button button{
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 1440px) {
+    .event-left-container{
+        width: 25%;
+    }
+    .event-display-section{
+        width: 75%;
+    }
+}
+
+@media screen and (max-width: 1265px) {
+    .event-main-container{
+        flex-direction: column;
+    }
+    .event-left-container{
+        width: 100%;
+        height: 50%;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        border: none;
+    }
+    .event-calendar-display{
+        padding: 1%;
+        width: 40%;
+    }
+    .event-display-section{
+        width: 100%;
+        height: 50%;
+    }
+    .event-bottom-container{
+        width: 60%;
+    }
+    .update-submit-container button{
+        width: 4rem;
+    }
+}
+
+@media screen and (max-width: 820px) {
+    .event-calendar-display{
+        width: 50%;
+    }
+    .event-bottom-container{
+        width: 50%;
+    }
+    .update-event-container input{
+        width: 50%;
+    }
+    .event-display-section{
+        height: 50%;
+        overflow-y: scroll;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .event-bottom-container{
+        padding: 1%;
+        width: 100%;
+    }
+    .update-event-container input{
         width: 60%;
     }
 }

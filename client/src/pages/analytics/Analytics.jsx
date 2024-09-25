@@ -5,6 +5,7 @@ import './index.css'
 import { fetchSocity, fetchTotalEvents, fetchTotalProblems } from '../../redux/analyticsSlice'
 import axios from 'axios'
 import { Stack, Skeleton } from '@mui/material'
+import useResponsiveSize from '../../hook/useResponsiveSize/useResponsiveSize.jsx'
 
 function Analytics() {
 
@@ -12,6 +13,7 @@ function Analytics() {
   const dispatch = useDispatch()
   const { societyMembers, totalProblems, totalEvents, completedProblems, incompleteProblems, pendingProblems, totalMembers, loading, error } = useSelector(state => state.analytics)
   const [uid, setUid] = useState('')
+  const {width, height} = useResponsiveSize()
 
   useEffect(() => {
     dispatch(fetchSocity())
@@ -129,8 +131,8 @@ function Analytics() {
                   ]
                 }
               ]}
-              width={400}
-              height={200}
+              width={width}
+              height={height}
             />
           </div>
           <div className="analytics-right-container">
