@@ -46,7 +46,7 @@ function Analytics() {
         }
       })
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
     setUid('')
   }

@@ -21,14 +21,6 @@ function Chat() {
         const newSocket = io('http://localhost:5000')
         setSocket(newSocket)
 
-        newSocket.on('connect', () => {
-            console.log('User connected', newSocket.id);
-        })
-
-        newSocket.on('disconnect', () => {
-            console.log('User disconnected');
-        })
-
         newSocket.emit('join', societyName)
 
         newSocket.on('messageHistory', (messageHistory) => {

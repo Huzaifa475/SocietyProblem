@@ -3,8 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import './index.css'
 import { fetchProfile, updateProfile } from '../../../redux/profileSlice'
 import { Toaster } from 'react-hot-toast';
-import signupImg from '../../../assets/sign-upImg.jpg'
-import axios from 'axios';
 
 function ProfileContent() {
 
@@ -93,7 +91,7 @@ function ProfileContent() {
               profile.photo ?
                 <img src={profile.photo} alt="" />
                 :
-                <img src="https://picsum.photos/400/300" alt="" />
+                <img src="https://via.placeholder.com/150?text=No+Profile+Image" alt="" />
             }
           </div>
           <div className="profile-info-container">

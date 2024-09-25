@@ -6,6 +6,7 @@ axios.defaults.withCredentials = true;
 export const fetchProblems = () => async (dispatch) => {
     const accessToken = localStorage.getItem('accessToken')
     try {
+        dispatch(setLoading())
         const res = await axios({
             method: 'get',
             url: '/api/v1/society/problems',
@@ -23,8 +24,6 @@ export const fetchProblems = () => async (dispatch) => {
 export const createProblem = ({content, category}) => async (dispatch) => {
     const accessToken = localStorage.getItem('accessToken')
     try {
-        console.log(category);
-        
         const res = await axios({
             method: 'post',
             url: '/api/v1/problem/create',
@@ -46,8 +45,7 @@ export const createProblem = ({content, category}) => async (dispatch) => {
 
 export const updateProblem = ({content, category, status} ,problemId) => async (dispatch) => {
     const accessToken = localStorage.getItem('accessToken')
-    try {
-        console.log(content);        
+    try {    
         const res = await axios({
             method: 'patch',
             url: `/api/v1/problem/update/${problemId}`,
@@ -70,7 +68,7 @@ export const updateProblem = ({content, category, status} ,problemId) => async (
 
 export const updateUpvote = (upvote, problemId) => async (dispatch) => {
     const accessToken = localStorage.getItem('accessToken')
-    try {        
+    try {
         const res = await axios({
             method: 'patch',
             url: `/api/v1/problem/updateUpvote/${problemId}`,

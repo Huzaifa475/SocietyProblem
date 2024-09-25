@@ -11,7 +11,7 @@ export const fetchAlerts = () => async (dispatch) => {
             method: 'get',
             url: '/api/v1/alert/get',
             headers: {
-                'Content-Type': '/application.json',
+                'Content-Type': 'application/json',
                 'Authorization': `Bearer ${accessToken}`
             }
         })
@@ -29,7 +29,7 @@ export const deleteAlerts = () => async (dispatch) => {
             method: 'delete',
             url: '/api/v1/alert/deleteByUser',
             headers: {
-                'Content-Type': '/application.json',
+                'Content-Type': 'application/json',
                 'Authorization': `Bearer ${accessToken}`
             }
         })

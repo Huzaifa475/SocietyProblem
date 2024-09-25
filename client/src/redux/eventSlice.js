@@ -6,6 +6,7 @@ axios.defaults.withCredentials = true
 export const fetchEvents = () => async(disaptch) => {
     const accessToken = localStorage.getItem('accessToken')
     try {
+        disaptch(setLoading())
         const res = await axios({
             method: 'get',
             url: '/api/v1/society/events',
@@ -23,8 +24,7 @@ export const fetchEvents = () => async(disaptch) => {
 export const createEvent = ({title, discription, location, onDate}) => async(disaptch) => {
     const accessToken = localStorage.getItem('accessToken')
     try {
-        console.log(title, discription, location, onDate);
-        
+        disaptch(setLoading())
         const res = await axios({
             method: 'post',
             url: '/api/v1/event/create',

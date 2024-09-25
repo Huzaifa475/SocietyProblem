@@ -28,13 +28,6 @@ function Alert() {
     useEffect(() => {
         const newSocket = io("http://localhost:5000", { transports: ['websocket'] });
         setSocket(newSocket);
-        newSocket.on('connect', () => {
-            console.log('Socket connected', newSocket.id);
-        })
-
-        newSocket.on('disconnect', () => {
-            console.log('Socket disconnected');
-        })
 
         const societyName = localStorage.getItem('societyName')
         newSocket.emit('join', societyName);

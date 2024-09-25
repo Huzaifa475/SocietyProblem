@@ -73,7 +73,7 @@ function Sider() {
             })
             setPhotoUrl(res.data.data);
         } catch (error) {
-            console.log(error);
+            console.error(error);
         }
     }
     useEffect(() => {
@@ -87,7 +87,7 @@ function Sider() {
                 photoUrl ?
                 <img src={photoUrl} alt="" loading='lazy'/>
                 :
-                <img src="https://picsum.photos/400/300" alt="" loading='lazy'/>
+                <img src="https://via.placeholder.com/150?text=No+Profile+Image" alt="" loading='lazy'/>
             }
         </div>
         <div className="view-profile-container">
