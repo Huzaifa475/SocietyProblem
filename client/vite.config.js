@@ -10,7 +10,13 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: path => path.replace(/^\/api/, '')
       }
-    }
+    },
+    hmr: {
+      clientPort: 443, 
+    },
+  },
+  build: {
+    chunkSizeWarningLimit: 500, 
   },
   plugins: [react()],
 })
