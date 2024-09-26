@@ -19,6 +19,7 @@ const io = new Server(server, {
 })
 
 io.on('connection', (socket) => {
+    console.log('A user connected');
 
     socket.on('join', async (societyName) => {
         try {
@@ -74,6 +75,10 @@ io.on('connection', (socket) => {
         console.log('User disconnected');
     })
 })
+
+io.on('connect_error', (err) => {
+    console.log(`Connect Error: ${err.message}`);
+});
 
 connectDB()
 .then(() => {

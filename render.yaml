@@ -1,0 +1,33 @@
+services:
+  - type: web
+    name: societyproblem-server
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    autoDeploy: true
+    envVars:
+      - key: MONGODB_URL
+        value: mongodb+srv://huzaifa:POP4759H@learnmongo.bcryjbr.mongodb.net
+      - key: PORT
+        value: 5000
+      - key: CORS_ORIGIN
+        value: *
+      - key: ACCESS_TOKEN_SECRECT 
+        value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+      - key: ACCESS_TOKEN_EXPIRY
+        value: 1d
+      - key: REFRESH_TOKEN_SECRECT
+        value: SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+      - key: REFRESH_TOKEN_EXPIRY
+        value: 10d
+      - key: CLOUD_NAME 
+        value: "huzaifa47"
+      - key: API_KEY 
+        value: "799792182953718"
+      - key: API_SECRECT
+        value: "QmU-378W7UcgXYvkjvlV7IXApbw"
+  - type: static
+    name: societyproblem-client
+    buildCommand: npm install && npm run build
+    publishDirectory: client/dist
+    autoDeploy: true
