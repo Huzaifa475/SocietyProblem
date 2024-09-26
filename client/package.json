@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "start": "vite preview --host --port $PORT",
+    "start": "npx vite preview --host --port $PORT",
     "preview": "vite preview"
   },
   "dependencies": {
