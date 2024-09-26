@@ -46,4 +46,8 @@ app.use((err, req, res, next) => {
     });
 });
 
+app.use('/', () => {
+    console.log('Welcome to server');
+})
+
 export {app}
