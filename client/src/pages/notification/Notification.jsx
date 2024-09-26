@@ -19,7 +19,10 @@ function Notification() {
     }, [dispatch])
 
     useEffect(() => {
-        const newSocket = io("http://localhost:5000", { transports: ['websocket'] });
+        const newSocket = io("https://societyproblem-server.onrender.com", { 
+            transports: ['websocket'],
+            secure: true
+        });
         setSocket(newSocket);
 
         const societyName = localStorage.getItem('societyName');

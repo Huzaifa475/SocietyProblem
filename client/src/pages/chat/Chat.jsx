@@ -18,7 +18,10 @@ function Chat() {
     const lastMessage = useRef(null);
 
     useEffect(() => {
-        const newSocket = io('http://localhost:5000')
+        const newSocket = io('https://societyproblem-server.onrender.com', { 
+            transports: ['websocket'],
+            secure: true
+        })
         setSocket(newSocket)
 
         newSocket.emit('join', societyName)
