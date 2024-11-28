@@ -32,19 +32,19 @@ app.use("/api/v1/society", societyRouter);
 app.use("/api/v1/notification", notificationRouter);
 app.use("/api/v1/alert", alertRouter);
 
-// app.use((req, res, next) => {
-//     const error = new apiError(404, 'Resource not found');
-//     next(error);
-// });
+app.use((req, res, next) => {
+    const error = new apiError(404, 'Resource not found');
+    next(error);
+});
 
-// app.use((err, req, res, next) => {
-//     const statusCode = err.status || 500;
-//     res.status(statusCode).json({
-//       success: false,
-//       message: err.message || 'Internal Server Error',
-//       statusCode: statusCode
-//     });
-// });
+app.use((err, req, res, next) => {
+    const statusCode = err.status || 500;
+    res.status(statusCode).json({
+      success: false,
+      message: err.message || 'Internal Server Error',
+      statusCode: statusCode
+    });
+});
 
 app.use((req, res, next) => {
     console.log(`${req.method} ${req.url}`);

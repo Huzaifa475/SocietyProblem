@@ -13,8 +13,8 @@ function Problem() {
     const [content, setContent] = useState('');
     const [category, setCategory] = useState('Infrastructure Issues');
     const [updateContent, setUpdateContent] = useState('');
-    const [updateCategory, setUpdateCategory] = useState('Infrastructure Issues');
-    const [updateStatus, setUpdateStatus] = useState('Incomplete');
+    const [updateCategory, setUpdateCategory] = useState('');
+    const [updateStatus, setUpdateStatus] = useState('');
     const { problems, loading, error } = useSelector(state => state.problem)
     const [selectedProblem, setSelectedProblem] = useState(null)
     const dispatch = useDispatch();

@@ -15,7 +15,7 @@ const createProblem = asyncHandler(async(req, res) => {
         throw new apiError(402, "All fields are required")
     }
 
-    const exists = await Problem.findOne({$or: [{content}]})
+    const exists = await Problem.findOne({$and: [{content, societyName: req.user.societyName}]})
 
     if(exists){
         throw new apiError(404, "Problem already exists")
@@ -49,10 +49,10 @@ const createProblem = asyncHandler(async(req, res) => {
         createdAt: new Date(),
         _id: new mongoose.Types.ObjectId(),
     });
-    
-    if(!notification.length){
-        throw new apiError(500, "Server error, Notification could not be created");
-    }
+
+    // if(!notification.length){
+    //     throw new apiError(500, "Server error, Notification could not be created");
+    // }
 
     return res
     .status(200)

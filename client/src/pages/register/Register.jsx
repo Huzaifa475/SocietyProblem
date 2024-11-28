@@ -63,7 +63,7 @@ function Register() {
                     </div>
                     <div className='default-property default'>
                         <span>Name</span>
-                        <input type="text" placeholder='Jen Doe' value={name} onChange={(e) => setName(e.target.value)} autoComplete='off' />
+                        <input type="text" placeholder='Jane Doe' value={name} onChange={(e) => setName(e.target.value)} autoComplete='off' />
                     </div>
                     <div className='default-property default'>
                         <span>Email</span>

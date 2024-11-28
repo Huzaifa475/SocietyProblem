@@ -68,7 +68,7 @@ function Login() {
         </div>
         <div className='login-name-field'>
           <span>Name</span>
-          <input type="text" placeholder='Jan Doe' value={name} onChange={(e) => setName(e.target.value)} autoComplete='off' />
+          <input type="text" placeholder='Jane Doe' value={name} onChange={(e) => setName(e.target.value)} autoComplete='off' />
         </div>
         <div className='login-password-field'>
           <span>Password</span>
