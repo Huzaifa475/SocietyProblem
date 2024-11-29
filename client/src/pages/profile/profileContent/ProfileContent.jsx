@@ -64,7 +64,7 @@ function ProfileContent() {
       const formData = new FormData();
       formData.append('photo', selectedFile);
 
-      const response = await fetch('https://societyproblem-server.onrender.com/api/v1/users/uploadPhoto', {
+      const response = await fetch('/api/v1/users/uploadPhoto', {
         method: 'POST',
         body: formData,
         headers: {
@@ -75,7 +75,7 @@ function ProfileContent() {
 
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error('Failed to upload image');
+        throw new Error('Failed to upload image', errorData);
       }
       toast.success(response.statusText)
     } catch (error) {

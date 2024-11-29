@@ -281,12 +281,18 @@ html body {
     .event-left-container{
         width: 25%;
         height: 100%;
+        gap: 1rem !important;
     }
     .event-display-section{
         width: 75%;
     }
     .event-calendar-display{
-        height: 50%;
+        height: 50% !important;
+        width: 100% !important;
+    }
+    .event-bottom-container{
+        height: 50% !important;
+        width: 100% !important;
     }
     .event-create-section{
         height: 50%;
