@@ -287,19 +287,19 @@ html body {
         width: 75%;
     }
     .event-calendar-display{
-        height: 50% !important;
-        width: 100% !important;
+        height: 50%;
+        width: 100%;
     }
     .event-bottom-container{
-        height: 50% !important;
-        width: 100% !important;
+        height: 50%;
+        width: 100%;
     }
     .event-create-section{
         height: 50%;
     }
 }
 
-@media screen and (max-width: 1265px) {
+@media screen and (max-width: 1300px) {
     .event-main-container{
         flex-direction: column;
     }
