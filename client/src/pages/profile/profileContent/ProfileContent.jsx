@@ -50,6 +50,9 @@ function ProfileContent() {
       setSelectedFile(file)
 
       const render = new FileReader()
+      render.onloadend = () => {
+        console.log('File read successfully');
+      }
       render.readAsDataURL(file)
     }
   }
