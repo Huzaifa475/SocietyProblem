@@ -14,7 +14,7 @@ const server = createServer(app);
 const io = new Server(server, {
     cors: {
         origin: "https://societyproblem-client.onrender.com",
-        methods: ['POST', 'GET', 'PATCH'],
+        methods: ['POST', 'GET', 'PATCH', 'DELETE'],
         transports: ['websocket'],
         credentials: true, 
     }

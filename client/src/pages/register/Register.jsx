@@ -73,7 +73,7 @@ function Register() {
                         <span>Password</span>
                         <div className='password'>
                             <input type={showPassword ? "text" : "password"} placeholder='xyz123' value={password} onChange={(e) => setPassword(e.target.value)} autoComplete='off' />
-                            <button onClick={handleClick}><FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} className="white-icon" /></button>
+                            <button onClick={handleClick}><FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} className="white-icon" /></button>
                         </div>
                     </div>
                     <div className='sign-up'>

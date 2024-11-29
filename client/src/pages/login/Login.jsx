@@ -74,7 +74,7 @@ function Login() {
           <span>Password</span>
           <div className=''>
             <input type={showPassword ? "text" : "password"} placeholder='xyz123' value={password} onChange={(e) => setPassword(e.target.value)} autoComplete='off' />
-            <button onClick={handleClick}><FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} /></button>
+            <button onClick={handleClick}><FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} /></button>
           </div>
         </div>
         <div className='login-button'>

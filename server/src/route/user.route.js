@@ -17,7 +17,7 @@ router.route("/update").patch(verifyJwt, updateUser);
 
 router.route("/getCurrentUser").get(verifyJwt, getCurrentUser);
 
-router.route("/uploadPhoto").patch(verifyJwt, upload.single('photo'), uploadPhotoUser)
+router.route("/uploadPhoto").post(verifyJwt, upload.single('photo'), uploadPhotoUser)
 
 router.route("/change-admin").patch(verifyJwt, changeAdmin);
 

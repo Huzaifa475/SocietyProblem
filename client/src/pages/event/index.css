@@ -39,7 +39,6 @@ html body {
     border-right: 1px solid black;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
 }
 
 .event-bottom-container{
@@ -305,6 +304,7 @@ html body {
         align-items: center;
         justify-content: center;
         border: none;
+        gap: 0.6rem;
     }
     .event-calendar-display{
         padding: 1%;

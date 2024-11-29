@@ -65,9 +65,10 @@ function ProfileContent() {
       formData.append('photo', selectedFile);
 
       const response = await fetch('https://societyproblem-server.onrender.com/api/v1/users/uploadPhoto', {
-        method: 'PATCH',
+        method: 'POST',
         body: formData,
         headers: {
+          'Content-Type': 'application/json',
           'Authorization': `Bearer ${accessToken}`
         },
       });
