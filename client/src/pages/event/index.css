@@ -316,6 +316,8 @@ html body {
         padding: 1%;
         width: 40%;
         height: 100%;
+        display: flex;
+        align-items: center;
     }
     .event-display-section{
         width: 100%;
