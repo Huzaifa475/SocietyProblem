@@ -323,6 +323,7 @@ html body {
     }
     .event-bottom-container{
         width: 60%;
+        height: 100%;
     }
     .update-submit-container button{
         width: 4rem;
