@@ -248,9 +248,6 @@ const getCurrentUser = asyncHandler(async(req, res) => {
 })
 
 const uploadPhotoUser = asyncHandler(async(req, res) => {
-
-    console.log(req.file);
-    
     const photoPath = req.file?.path 
 
     if(!photoPath){
